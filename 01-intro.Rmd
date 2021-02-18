@@ -1,10 +1,32 @@
 # Introduction {#intro}
 
+## Theta
+
+## Medial Septum
+The medial septum (MS) a structure located in the forebrain (Figure \@ref(fig:MS-Scheme)) can be found across species.
+
+```{r MS-Scheme, fig.cap = 'Schematic of medial septum in saggital (A) and coronal (B) section. Blue shows the location of the MS, light gray represents ventricular space and dark gray fibre bundels. The dashed line in (A) indicates the position of the section of (B). Modified from Allen Brain Atlas.', fig.pos='H', fig.align='center', echo=FALSE}
+knitr::include_graphics(path = 'Figures/Schemes/MS_schematic.pdf')
+```
+
+## Parasubiculum
+The parasubiculum (PaS) on the other hand is part of the parahippocampal formation (Figure \@ref(fig:PaS-Scheme)), the posterior part of the mouse brain, and is found in different species [@ding_comparative_2013]. 
+It is adjacent to the medial entorhinal cortex and presubiculum which, as the PaS, have spatially linked functional cell types coding for different aspects used for navigation (Citation needed).
+
+```{r PaS-Scheme, fig.cap = 'Schematic of parasubiculum in a saggital (A) and horizontal (B) section. turqoise shows the location of the PaS, light gray represents ventricular space and dark gray fibre bundels. The dark green in (B) represents the pyramidal cell layer II of the medial entorhinal cortex. The cornu ammonis and the dentate gyrus are marked in light blue.', fig.show='hold', fig.pos='H', out.height= '90%', out.width='90%',echo=FALSE}
+knitr::include_graphics(path = 'Figures/Schemes/PaS_schematic.pdf')
+```
+
+
+## Spatial Navigation
+
+### Theta
+
 You can label chapter and section titles using `{#label}` after them, e.g., we can reference Chapter \@ref(intro). If you do not manually label them, there will be automatic labels anyway, e.g., Chapter \@ref(methods).
 
 Figures and tables with captions will be placed in `figure` and `table` environments, respectively.
 
-```{r nice-fig, fig.cap='Here is a nice figure!', out.width='80%', fig.asp=.75, fig.align='center'}
+```{r nice-fig, fig.cap='Here is a nice figure!', out.width='100%', fig.align='center'}
 par(mar = c(4, 4, .1, .1))
 plot(pressure, type = 'b', pch = 19)
 ```
@@ -17,5 +39,6 @@ knitr::kable(
   booktabs = TRUE
 )
 ```
+look at figure \@ref(fig:nice-fig)
 
 You can write citations, too. For example, we are using the **bookdown** package [@R-bookdown] in this sample book, which was built on top of R Markdown and **knitr** [@xie2015].
