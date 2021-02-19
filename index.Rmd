@@ -26,7 +26,6 @@ toc-depth: 1
 output: 
   pdf_document: 
     keep_tex: yes
-    latex_engine: xelatex
 ---
 
 # Prerequisites
