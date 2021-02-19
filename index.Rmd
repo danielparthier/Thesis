@@ -7,12 +7,12 @@ fontsize: 12pt
 geometry: left=3cm, right=3cm, top=2.5cm, bottom=2.5cm
 linestretch: 1.5
 link-citations: yes
-mainfont: Nimbus Roman
+mainfont: URW Nimbus Roman
 bibliography:
 - book.bib
 - packages.bib
 - references.bib
-sansfont: Nimbus Roman
+sansfont: URW Nimbus Roman
 site: bookdown::bookdown_site
 subtitle: |
   | Inaugural-Dissertation
@@ -24,7 +24,7 @@ subtitle: |
 biblio-style: apalike
 toc-depth: 1
 output: 
-  pdf_document: 
+  pdf_document:
     keep_tex: yes
 ---
 
@@ -35,6 +35,9 @@ The experimental work of this thesis was completed from xx.xx.xx to xx.xx.xx und
 ```{r include=FALSE}
 # automatically create a bib database for R packages
 knitr::write_bib(c(
-  .packages(), 'bookdown', 'knitr', 'rmarkdown'
+  .packages(), 'bookdown', 'knitr', 'rmarkdown', 'data.table'
 ), 'packages.bib')
+library('ggplot2')
+library('data.table')
+library('patchwork')
 ```

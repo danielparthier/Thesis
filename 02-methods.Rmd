@@ -1,14 +1,27 @@
-# Materials and Methods
+# Materials and Methods {#methods}
+
+## Animals
+
+## Stereotactic Injections
+
 
 ## In-Vitro
 
 ### Slice Preparation
-For slices animals (n = XX PV-Cre mice, n = XX ChAT-Cre mice ) were deeply anaesthetised using isoflurane decapitated, the brain removed and quickly transferred to ice-cold slicing solution. sucrose artificial cerebral spinal fluid (SACF). SACF contained 87 NaCl, 26 NaHCO~3~, 10 Glucose, 50 Sucrose, 2.5 KCl, 1.25 NaH~2~PO~4~, 0.5 CaCl~2~, 3 MgCl~2~ · 6H~2~O.
-400 µm horizontal slices were produced using a vibratome (VT1200S, Leica Biosystems, Wetzlar, Germany), then transferred and stored in an interface chamber for up to 1-6 h. Slices were perfused with ACSF (119 NaCl, 26 NaHCO~3~, 10 Glucose, 2.5 KCl, 1 NaH~2~PO~4~, 2.5 CaCl~2~, 1.3 MgCl~2~ · 6H~2~O) and oxygenated during the whole period.
+For slices animals (n = XX PV-Cre mice, n = XX ChAT-Cre mice ) were deeply anaesthetised using isoflurane decapitated, the brain removed and quickly transferred to cold (~4°C) slicing solution (sucrose artificial cerebral spinal fluid - SACF). SACF contained (mM): 87 NaCl, 26 NaHCO~3~, 10 Glucose, 50 Sucrose, 2.5 KCl, 1.25 NaH~2~PO~4~, 0.5 CaCl~2~, 3 MgCl~2~ · 6H~2~O.
+Hemispheres were placed on a vibratome (VT1200S, Leica Biosystems, Wetzlar, Germany) to produce 400 µm horizontal slices (Figure \@ref(fig:PaS-Scheme) B) which were then transferred and stored in an interface chamber for up to 1-6 h. Slices were perfused with ACSF (in mM: 119 NaCl, 26 NaHCO~3~, 10 Glucose, 2.5 KCl, 1 NaH~2~PO~4~, 2.5 CaCl~2~, 1.3 MgCl~2~ · 6H~2~O) and oxygenated during the whole period.
 
 ### Slice Recordings
-Cells were identified using XXXX DIC XXXX and recorded in the whole-cell patch-clamp configuration using a glass electrode filled with intracellular solution (120 K-Gluconate, 10 Hepes, 10 KCl, 5 EGTA, 2 MgSO~4~ · 7H~2~, 3 MgATP, 1 NaGTP, 5 Phosphocreatine Na, 0.2% Biocytin) to record currents, voltage and later identify cells via Biocytin staining. After opening, cells were hold in voltage-clamp at -60 mV to measure series resistance. Then cells were switched to current clamp to perform a characterisation of cell properties (current steps of 40-100 pA). To assess septal connectivity to the parasubiculum Channelrhodopsin expressing fibres in the area were activated using 10 ms light pulses. For the light stimulation a range of the pulse frequencies (10, 20, 40 Hz) was used to evoke membrane potential changes (EPSPs) or membrane current (EPSCs). To detect masked inputs due to low driving force or simultaneously occuring synaptic inputs the holding potential of the cell was changed from -60, to -80 and then to -50 mV after at least 10 trials.
+Slices were transferred from the interface storage to the recording chamber which contained constantly flowing oxygenated ACSF. Cells were identified using XXXX DIC XXXX and recorded in the whole-cell patch-clamp configuration using a glass electrode filled with intracellular solution (in mM: 120 K-Gluconate, 10 Hepes, 10 KCl, 5 EGTA, 2 MgSO~4~ · 7H~2~, 3 MgATP, 1 NaGTP, 5 Phosphocreatine Na, 0.2% Biocytin) to record current or voltage changes and later identify cells via Biocytin staining.
 
-all in c/mM
+After opening, cells were hold in voltage-clamp at -60 mV to measure series resistance and assess access.
+
+Then cells were switched to current-clamp configuration to perform a characterisation of cell properties (current steps of 40-100 pA). To assess septal connectivity to the parasubiculum Channelrhodopsin expressing fibres in the area were activated using 10 ms light pulses.
+<!-- check for which light sources --> To elicit inhibitory (IPSPs) or excitatory postsynaptic potentials (EPSPs) and inhibitory (IPSCs) or excitatory postsynaptic currents (EPSCs) a range of pulse frequencies (10, 20, 40 Hz) was used.
+
+To detect masked inputs due to low driving force or simultaneously occurring synaptic inputs the holding potential of the cell was changed from -60, to -80 and then to -50 mV after at least 10 trials respectively.
+
 
 Drugs used:
+
+## Statistical Analysis
