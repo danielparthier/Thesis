@@ -1,0 +1,36 @@
+# References {-}
+
+<div id="refs"></div>
+
+\newpage 
+
+# Appendix {-}
+
+## Abbreviations {-}
+```{r abbreviations, tidy=FALSE,echo=FALSE,}
+AbbTable <- data.table(Abbrevation=c("ACSF", "sACSF", "PV", "ChAT", "TTX", "4-AP", "PaS", "PrS", "MEC", "MS", "LS", "IPSC", "IPSP", "EPSC", "EPSP", "PBS", "PFA", "VR"),
+                       Meaning=c("Artificial Cerebral Spinal Fluid", "Sucrose Artificial Cerebral Spinal Fluid", "Parvalbumin", "Choline Acetyltransferase", "Tetrodotoxin", "4-Aminopyridine", "Parasubiculum", "Presubiculum", "Medial Entorhinal Cortex", "Medial Septum", "Lateral Septum","Inhibitory Postsynaptic Current", "Inhibitory Postsynaptic Potential", "Excitatory Postsynaptic Current", "Excitatory Postsynaptic Potential", "Phosphate-Buffered Saline", "Paraformaldehyde", "Virtual Reality"))
+setorder(x = AbbTable, "Abbrevation")
+knitr::kable(
+  x = AbbTable, caption = 'List of Abbreviations',
+  col.names = NULL,
+  longtable = TRUE,
+  booktabs = TRUE,
+  format = "simple"
+)
+```
+
+## Statement of contributions
+
+## List Of Publications
+
+## Eidestattliche Erklärung
+
+Hiermit versichere ich,
+
+Daniel Parthier (Matrikelnummer: 5144911) geboren am 05.08.1987 in Potsdam,
+an Eides statt, dass die vorliegende Arbeit von mir selbstständig und ohne unerlaubte Hilfe Dritter verfasst wurde und ich keine anderen als die angegebenen Quellen und Hilfsmittel verwendet sowie wörtliche und sinngemäße Zitate als solche kenntlich gemacht habe.
+Diese Arbeit hat in gleicher oder ähnlicher Form noch keiner anderen Prüfungsbehörde vorgelegen und wurde bisher nicht veröffentlicht.
+
+
+Berlin,  `r format(x = as.Date(Sys.Date()), '%d.%m.%Y')` Unterschrift

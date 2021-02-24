@@ -5,8 +5,8 @@
 ## Medial Septum
 The medial septum (MS) a structure located in the forebrain (Figure \@ref(fig:MS-Scheme)) can be found across species.
 
-```{r MS-Scheme, fig.cap = 'Schematic of medial septum in saggital (A) and coronal (B) section. Blue shows the location of the MS, light gray represents ventricular space and dark gray fibre bundels. The dashed line in (A) indicates the position of the section of (B). Modified from Allen Brain Atlas.', fig.pos='H', fig.align='center', echo=FALSE, fig.asp = 0.35, fig.height=6}
-sag  <- grImport2::pictureGrob(grImport2::readPicture(rawToChar(rsvg::rsvg_svg("Figures/Schemes/MS_saggital_clean.svg"))))
+```{r MS-Scheme, fig.cap = 'Schematic of medial septum in sagittal (A) and coronal (B) section. Blue shows the location of the MS, light gray represents ventricular space and dark gray fibre bundels. The dashed line in (A) indicates the position of the section of (B). Modified from Allen Brain Atlas.', fig.pos='H', fig.align='center', echo=FALSE, fig.height=3}
+sag  <- grImport2::pictureGrob(grImport2::readPicture(rawToChar(rsvg::rsvg_svg("Figures/Schemes/MS_sagittal_clean.svg"))))
 coronal  <- grImport2::pictureGrob(grImport2::readPicture(rawToChar(rsvg::rsvg_svg("Figures/Schemes/MS_coronal_clean.svg"))))
 wrap_elements(gridExtra::arrangeGrob(sag), clip = T) + wrap_elements(gridExtra::arrangeGrob(coronal), clip=T) + plot_layout(widths = c(3.2,2)) &
   plot_annotation(tag_levels = "A") &
@@ -17,10 +17,10 @@ wrap_elements(gridExtra::arrangeGrob(sag), clip = T) + wrap_elements(gridExtra::
 The parasubiculum (PaS) on the other hand is part of the parahippocampal formation (Figure \@ref(fig:PaS-Scheme)), the posterior part of the mouse brain, and is found in different species [@ding_comparative_2013]. 
 It is adjacent to the medial entorhinal cortex and presubiculum which, as the PaS, have spatially linked functional cell types coding for different aspects used for navigation (Citation needed).
 
-```{r PaS-Scheme, fig.cap = 'Schematic of parasubiculum in a saggital (A) and horizontal (B) section. turqoise shows the location of the PaS, light gray represents ventricular space and dark gray fibre bundels. The dark green in (B) represents the pyramidal cell layer II of the medial entorhinal cortex. The cornu ammonis and the dentate gyrus are marked in light blue.', fig.show='hold', fig.pos='H',echo=FALSE, fig.asp = 0.35, fig.height=6}
+```{r PaS-Scheme, fig.cap = 'Schematic of parasubiculum in a sagittal (A) and horizontal (B) section. turqoise shows the location of the PaS, light gray represents ventricular space and dark gray fibre bundels. The dark green in (B) represents the pyramidal cell layer II of the medial entorhinal cortex. The cornu ammonis and the dentate gyrus are marked in light blue.', fig.show='hold', fig.pos='H',echo=FALSE, fig.height=3}
 hor  <- grImport2::pictureGrob(grImport2::readPicture(rawToChar(rsvg::rsvg_svg("Figures/Schemes/PaS_horizontal_clean.svg"))))
-sag  <- grImport2::pictureGrob(grImport2::readPicture(rawToChar(rsvg::rsvg_svg("Figures/Schemes/PaS_saggital_clean.svg"))))
-wrap_elements(gridExtra::arrangeGrob(sag), clip = T) + wrap_elements(gridExtra::arrangeGrob(hor), clip=T) + plot_layout(widths = c(3.2,2)) &
+sag  <- grImport2::pictureGrob(grImport2::readPicture(rawToChar(rsvg::rsvg_svg("Figures/Schemes/PaS_sagittal_clean.svg"))))
+wrap_elements(gridExtra::arrangeGrob(sag), clip = T) + wrap_elements(gridExtra::arrangeGrob(hor), clip=T) + plot_layout(widths = c(3.2,1.5)) &
   plot_annotation(tag_levels = "A") &
   theme(plot.tag = element_text(size=24))
 ```
@@ -44,9 +44,11 @@ Reference a figure by its code chunk label with the `fig:` prefix, e.g., see Fig
 ```{r nice-tab, tidy=FALSE}
 knitr::kable(
   head(iris, 20), caption = 'Here is a nice table!',
-  booktabs = TRUE
+  booktabs = TRUE,
+  format = "simple"
 )
 ```
+
 look at figure \@ref(fig:nice-fig)
 
 You can write citations, too. For example, we are using the **bookdown** package [@R-bookdown] in this sample book, which was built on top of R Markdown and **knitr** [@xie2015].

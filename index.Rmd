@@ -24,7 +24,7 @@ subtitle: |
 biblio-style: apalike
 toc-depth: 1
 output: 
-  pdf_document:
+  pdf_document2:
     keep_tex: yes
 ---
 
@@ -37,6 +37,7 @@ The experimental work of this thesis was completed from xx.xx.xx to xx.xx.xx und
 knitr::write_bib(c(
   .packages(), 'bookdown', 'knitr', 'rmarkdown', 'data.table'
 ), 'packages.bib')
+library('magrittr')
 library('ggplot2')
 library('data.table')
 library('patchwork')

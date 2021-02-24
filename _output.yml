@@ -1,7 +1,7 @@
 bookdown::pdf_book:
   includes:
     in_header: preamble.tex
-  citation_package: natbib
+#  citation_package: natbib
   keep_tex: yes
 #bookdown::gitbook:
 #  css: style.css
