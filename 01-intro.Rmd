@@ -1,11 +1,25 @@
 # Introduction {#intro}
+The evolutionary goal of a species is to survive. This single goal is achieved by adopting to the environment and by optimising strategies to live in the specific environment and reproduce ( Citation needed). Higher organisms therefore developed structures which are able to help with optimising their behaviour on different levels (citation for different evolution behaviours). One of the first developed concepts were olfaction based on chemotaxis, vision, and perception of sounds. One important higher level function, which is not solely a processing of sensory inputs, is the computation for spatial navigation (citation needed). Navigation can be observed in several species of the animal kingdom such as ants (cite), drosophila (cite), pigeons, rodents, bats, and dolphins (find citations for all) and is essential to find food, a partner, or avoiding danger. Over the last decades the endeavour to understand the *"cognitive map"* [@tolman_cognitive_1948] and how we use the abstraction of space (citation needed) drove research and revealed several concepts of how space can be deconstructed (place, speed, grid, head-direction, vectors, border etc.) and represented by the brain. Coding space properties can be achieved by different mechanisms allowing for a detailed representation of the environment. If we take place cells, they can be found to fire with a higher rate in specific position which are referred to as place fields. This principle of coding properties with the count of spikes is called rate-code. However, this is not the only possible way of transferring information. An additional way a spike can code space is via the phase-code. The phase-code is based on the fact that population activity, synaptic inputs, but also dendritic depolarisation can shape the electric field in the brain. This property is the field potential. The field potential can show oscillatory behaviour, meaning a sine-wave at specific frequencies. If one now aligns the occurrence of spikes to the phase, the position on a sine-wave, it can be observed that location can also be reflected by the phase and therefore can code additionally information via the same spike.
 
 ## Theta
+$\theta$ oscillations range between 4-12 Hz and were for the first time observed in the hippocampus by @green_hippocampal_1954 in rabbits, cats, and monkeys. They exposed anaesthetised animals to different stimuli and measured the oscillatory responses in the hippocampal area. A decade later $\theta$ was observed in the context of navigation for the first time [@vanderwolf_hippocampal_1969]. Freely moving rats show synchronised hippocampal activity reflected in the local field potential (LFP) during exploration [@winson_patterns_1974]. Similarly these oscillations can be found in the mouse and also human, however, in humans with lower frequency [@ekstrom_human_2005; @miller_lateralized_2018; @watrous_comparative_2013]. Interestingly enough, bat do not show a classical theta pattern during exploration (citation needed). Further, $\theta$ activity in rodents is almost constantly occurring during movement compared to burst activity in humans [@ekstrom_human_2005; @watrous_comparative_2013].
+
+Already early on there was a consensus that oscillations are associated with navigation in behaving rodents [@okeefe_hippocampus_1971; @vanderwolf_hippocampal_1969]
+
+(ref:quoteKD) --- Footnote by J.O'Keefe & J.Dostrovsky , 1971
+
+(ref:wholeQuoteKD) * Vanderwolf has reported (and we agree) that the former behaviours are associated with $\theta$ activity in the hippocampal EEG, while, during the latter behaviours, the EEG shows irregular slow waves.
+
+> (ref:wholeQuoteKD)
+>
+> `r tufte::quote_footer('(ref:quoteKD)')`
+
+
 
 ## Medial Septum
-The medial septum (MS) a structure located in the forebrain (Figure \@ref(fig:MS-Scheme)) can be found across species.
+The medial septum (MS) a structure located in the forebrain (Figure \@ref(fig:MS-Scheme)) can be found across different species. 
 
-```{r MS-Scheme, fig.cap = 'Schematic of medial septum in sagittal (A) and coronal (B) section. Blue shows the location of the MS, light gray represents ventricular space and dark gray fibre bundels. The dashed line in (A) indicates the position of the section of (B). Modified from Allen Brain Atlas.', fig.pos='H', fig.align='center', echo=FALSE, fig.height=3}
+```{r MS-Scheme, fig.cap = 'Schematic of medial septum in sagittal (A) and coronal (B) section. Blue shows the location of the MS, light gray represents ventricular space and dark gray fibre bundels. The dashed line in (A) indicates the position of the section of (B). Modified from Allen Brain Atlas.', fig.pos='H', fig.align='center', echo=FALSE, fig.height=3, fig.asp=0.4}
 sag  <- grImport2::pictureGrob(grImport2::readPicture(rawToChar(rsvg::rsvg_svg("Figures/Schemes/MS_sagittal_clean.svg"))))
 coronal  <- grImport2::pictureGrob(grImport2::readPicture(rawToChar(rsvg::rsvg_svg("Figures/Schemes/MS_coronal_clean.svg"))))
 wrap_elements(gridExtra::arrangeGrob(sag), clip = T) + wrap_elements(gridExtra::arrangeGrob(coronal), clip=T) + plot_layout(widths = c(3.2,2)) &
@@ -13,11 +27,13 @@ wrap_elements(gridExtra::arrangeGrob(sag), clip = T) + wrap_elements(gridExtra::
   theme(plot.tag = element_text(size=24))
 ```
 
+The MS is a highly connected region and projects significantly to the hippocampus [@fuhrmann_locomotion_2015; @huh_glutamatergic_2010; @joshi_behavior-dependent_2017; @robinson_optogenetic_2016; @unal_spatio-temporal_2018; @unal_synaptic_2015; @vandecasteele_optogenetic_2014] and parahippocampal network [@alonso_study_1984; @desikan_target_2018; @fuchs_local_2016; @gonzalez-sulser_gabaergic_2014; @van_groen_connections_1990].
+
 ## Parasubiculum
-The parasubiculum (PaS) on the other hand is part of the parahippocampal formation (Figure \@ref(fig:PaS-Scheme)), the posterior part of the mouse brain, and is found in different species [@ding_comparative_2013]. 
+The parasubiculum (PaS) on the other hand is part of the parahippocampal formation (Figure \@ref(fig:PaS-Scheme)), the posterior part of the mouse brain [@boccara_threeplane_2015], and is found in different species [@ding_comparative_2013]. 
 It is adjacent to the medial entorhinal cortex and presubiculum which, as the PaS, have spatially linked functional cell types coding for different aspects used for navigation (Citation needed).
 
-```{r PaS-Scheme, fig.cap = 'Schematic of parasubiculum in a sagittal (A) and horizontal (B) section. turqoise shows the location of the PaS, light gray represents ventricular space and dark gray fibre bundels. The dark green in (B) represents the pyramidal cell layer II of the medial entorhinal cortex. The cornu ammonis and the dentate gyrus are marked in light blue.', fig.show='hold', fig.pos='H',echo=FALSE, fig.height=3}
+```{r PaS-Scheme, fig.cap = 'Schematic of parasubiculum in a sagittal (A) and horizontal (B) section. turqoise shows the location of the PaS, light gray represents ventricular space and dark gray fibre bundels. The dark green in (B) represents the pyramidal cell layer II of the medial entorhinal cortex. The cornu ammonis and the dentate gyrus are marked in light blue.', fig.show='hold', fig.pos='H',echo=FALSE, fig.height=3, fig.asp=0.4}
 hor  <- grImport2::pictureGrob(grImport2::readPicture(rawToChar(rsvg::rsvg_svg("Figures/Schemes/PaS_horizontal_clean.svg"))))
 sag  <- grImport2::pictureGrob(grImport2::readPicture(rawToChar(rsvg::rsvg_svg("Figures/Schemes/PaS_sagittal_clean.svg"))))
 wrap_elements(gridExtra::arrangeGrob(sag), clip = T) + wrap_elements(gridExtra::arrangeGrob(hor), clip=T) + plot_layout(widths = c(3.2,1.5)) &
@@ -30,25 +46,3 @@ wrap_elements(gridExtra::arrangeGrob(sag), clip = T) + wrap_elements(gridExtra::
 
 ### Theta
 
-You can label chapter and section titles using `{#label}` after them, e.g., we can reference Chapter \@ref(intro). If you do not manually label them, there will be automatic labels anyway, e.g., Chapter \@ref(methods).
-
-Figures and tables with captions will be placed in `figure` and `table` environments, respectively.
-
-```{r nice-fig, fig.cap='Here is a nice figure!', out.width='100%', fig.align='center'}
-par(mar = c(4, 4, .1, .1))
-plot(pressure, type = 'b', pch = 19)
-```
-
-Reference a figure by its code chunk label with the `fig:` prefix, e.g., see Figure \@ref(fig:nice-fig). Similarly, you can reference tables generated from `knitr::kable()`, e.g., see Table \@ref(tab:nice-tab).
-
-```{r nice-tab, tidy=FALSE}
-knitr::kable(
-  head(iris, 20), caption = 'Here is a nice table!',
-  booktabs = TRUE,
-  format = "simple"
-)
-```
-
-look at figure \@ref(fig:nice-fig)
-
-You can write citations, too. For example, we are using the **bookdown** package [@R-bookdown] in this sample book, which was built on top of R Markdown and **knitr** [@xie2015].

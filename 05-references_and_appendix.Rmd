@@ -7,24 +7,26 @@
 # Appendix {-}
 
 ## Abbreviations {-}
-```{r abbreviations, tidy=FALSE,echo=FALSE,}
-AbbTable <- data.table(Abbrevation=c("ACSF", "sACSF", "PV", "ChAT", "TTX", "4-AP", "PaS", "PrS", "MEC", "MS", "LS", "IPSC", "IPSP", "EPSC", "EPSP", "PBS", "PFA", "VR"),
-                       Meaning=c("Artificial Cerebral Spinal Fluid", "Sucrose Artificial Cerebral Spinal Fluid", "Parvalbumin", "Choline Acetyltransferase", "Tetrodotoxin", "4-Aminopyridine", "Parasubiculum", "Presubiculum", "Medial Entorhinal Cortex", "Medial Septum", "Lateral Septum","Inhibitory Postsynaptic Current", "Inhibitory Postsynaptic Potential", "Excitatory Postsynaptic Current", "Excitatory Postsynaptic Potential", "Phosphate-Buffered Saline", "Paraformaldehyde", "Virtual Reality"))
+```{r abbreviationTable, tidy=FALSE, echo=FALSE, warning=F}
+AbbTable <- data.table(Abbrevation=c("ACSF", "sACSF", "PV", "ChAT", "TTX", "4-AP", "PaS", "PrS", "MEC", "MS", "LS", "IPSC", "IPSP", "EPSC", "EPSP", "PBS", "PFA", "VR", "LFP"),
+                       Meaning=c("Artificial Cerebral Spinal Fluid", "Sucrose Artificial Cerebral Spinal Fluid", "Parvalbumin", "Choline Acetyltransferase", "Tetrodotoxin", "4-Aminopyridine", "Parasubiculum", "Presubiculum", "Medial Entorhinal Cortex", "Medial Septum", "Lateral Septum","Inhibitory Postsynaptic Current", "Inhibitory Postsynaptic Potential", "Excitatory Postsynaptic Current", "Excitatory Postsynaptic Potential", "Phosphate-Buffered Saline", "Paraformaldehyde", "Virtual Reality", "Local Field Potential"))
+### table over more than a page --> warning should be fixed
 setorder(x = AbbTable, "Abbrevation")
 knitr::kable(
-  x = AbbTable, caption = 'List of Abbreviations',
+  x = AbbTable,
+  label = NA,
+  caption = 'List of Abbreviations',
   col.names = NULL,
   longtable = TRUE,
   booktabs = TRUE,
-  format = "simple"
-)
+  format = "simple")
 ```
 
-## Statement of contributions
+## Statement of contributions {-}
 
-## List Of Publications
+## List Of Publications {-}
 
-## Eidestattliche Erklärung
+## Eidestattliche Erklärung {-}
 
 Hiermit versichere ich,
 
