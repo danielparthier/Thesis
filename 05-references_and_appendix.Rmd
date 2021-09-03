@@ -4,9 +4,51 @@
 
 \newpage 
 
-# Appendix {-}
+# Appendix {- #appendix}
+## Additional Tables {-}
+```{r CellParTable,tidy=FALSE, echo=FALSE, warning=F}
+ParameterTable <- readRDS(file = "/alzheimer/Daniel_Data/R/In-Vitro-ConnectivityAnalysis/Output/ParameterTable.rds")
+#ParameterTable[,Parameter:=gsub(x = Parameter, pattern = "Ω", "$\\\\Omega$"),]#ParameterTable[Parameter%in%c("AHP (mV)", "AP-Height (mV)", "Cm (pF)", "Firing Frequency (Hz)", "Rheobase (pA)", "Rin (MOhm)", "Threshold (mV)", "Vm (mV)"), `:=`(`2.5%`=round(`2.5%`, digits = 1), `50%`=round(`50%`, digits = 1), `97.5%`=round(`97.5%`, digits = 1)),]
+setorder(ParameterTable, "Parameter")
+kableExtra::kbl(
+  x = ParameterTable[,.(Parameter, `Cell Type`, `2.5%`, `50%`, `97.5%`),],
+#  align = "c",
+  caption = 'Cell Parameters',
+  digits = 3, escape = T,
+  longtable = TRUE,
+  booktabs = TRUE) %>%
+add_header_above(c(" " = 2, "HDI" = 3)) %>%
+ kable_styling(font_size = 8, latex_options = c("repeat_header"), repeat_header_method = "replace", repeat_header_text = "Cell Parameters") %>%
+  collapse_rows(columns = 1, latex_hline = "major", longtable_clean_cut = T)
+
+```
+
+```{r CellParCompTable,tidy=FALSE, echo=FALSE, warning=F}
+
+# # knitr::kable(
+# #   x = ParameterCompTable[,.(Parameter, `Comparison`, `2.5%`, `50%`, `97.5%`, `non-zero`),],
+# #   caption = 'Parameters Differences',
+# #   digits = 2,
+# #   longtable = TRUE,
+# #   booktabs = TRUE) %>% 
+# # add_header_above(c(" " = 2, "HDI" = 3, "  " = 1)) %>%
+# # kable_styling(latex_options = c("repeat_header"))
+# 
+kableExtra::kbl(
+  x = ParameterCompTable[,.(Parameter, `Comparison`, `2.5%`, `50%`, `97.5%`, `non-zero`),],
+  caption = 'Cell Parameter Differences',
+  digits = 3,
+  longtable = TRUE,
+  booktabs = TRUE) %>%
+add_header_above(c(" " = 2, "HDI" = 3, "  " = 1)) %>%
+ kable_styling(font_size = 8, latex_options = c("repeat_header"), repeat_header_method = "replace", repeat_header_text = "Cell Parameter Differences") %>%
+  collapse_rows(columns = 1, latex_hline = "major", longtable_clean_cut = T)
+```
+
 
 ## Abbreviations {-}
+
+
 ```{r abbreviationTable, tidy=FALSE, echo=FALSE, warning=F}
 AbbTable <- data.table(Abbrevation=c("ACSF", "sACSF", "PV", "ChAT", "TTX", "4-AP", "PaS", "PrS", "MEC", "MS", "LS", "IPSC", "IPSP", "EPSC", "EPSP", "PBS", "PFA", "VR", "LFP"),
                        Meaning=c("Artificial Cerebral Spinal Fluid", "Sucrose Artificial Cerebral Spinal Fluid", "Parvalbumin", "Choline Acetyltransferase", "Tetrodotoxin", "4-Aminopyridine", "Parasubiculum", "Presubiculum", "Medial Entorhinal Cortex", "Medial Septum", "Lateral Septum","Inhibitory Postsynaptic Current", "Inhibitory Postsynaptic Potential", "Excitatory Postsynaptic Current", "Excitatory Postsynaptic Potential", "Phosphate-Buffered Saline", "Paraformaldehyde", "Virtual Reality", "Local Field Potential"))
@@ -14,17 +56,20 @@ AbbTable <- data.table(Abbrevation=c("ACSF", "sACSF", "PV", "ChAT", "TTX", "4-AP
 setorder(x = AbbTable, "Abbrevation")
 knitr::kable(
   x = AbbTable,
-  label = NA,
   caption = 'List of Abbreviations',
   col.names = NULL,
+  label = NA,
   longtable = TRUE,
   booktabs = TRUE,
   format = "simple")
 ```
 
-## Statement of contributions {-}
+## List of Figures {-}
+\listoffigures
 
-## List Of Publications {-}
+## Statement of Contributions {-}
+
+## List of Publications {-}
 
 ## Eidestattliche Erklärung {-}
 

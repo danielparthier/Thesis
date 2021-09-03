@@ -1,3 +1,277 @@
 # Results {#results}
 
-Here is a review of existing methods.
+```{r CharParFileLoad, echo=F}
+CellChar <- readRDS(file = "/alzheimer/Daniel_Data/R/In-Vitro-ConnectivityAnalysis/Output/CellChar.rds")
+DSCount <- CellChar[CellTypeLayer=="DS",.N,]
+INCount <- CellChar[CellTypeLayer=="IN",.N,]
+IN1Count <- CellChar[CellTypeLayer=="IN_1",.N,] 
+FSCount <- CellChar[CellTypeLayer=="FS",.N,] 
+AHPDiffRange <- as.vector(unlist(ParameterCompTable[Parameter=="AHP (mV) (µ)"&OutOfInterval==1,.(min(`50%`), max(`50%`)),]))
+ParameterTable <- readRDS(file = "/alzheimer/Daniel_Data/R/In-Vitro-ConnectivityAnalysis/Output/ParameterTable.rds")
+#ParameterCompTable <- readRDS(file = "/alzheimer/Daniel_Data/R/In-Vitro-ConnectivityAnalysis/Output/ParameterComparisons.rds")
+```
+## *In-Vitro*
+
+### Cell Characterisation
+
+`r CellChar[,.N,]` Neurons were recorded in the PaS and their cell properties characterised. As we described in @sammons_electrophysiological_2019 cells in the PaS can be split into 3 major clusters. A total of $19$ cell parameters were used to and integrated in an hierarchical clustering approach. The cell parameters were firstly scaled and centred by subtracting the mean and dividing by the standard deviation for each parameter respectively. This was then followed by calculating the euclidean distance matrix which was used to cluster the cells based on Ward's method. As demonstrated by @sammons_electrophysiological_2019 using this approach cells in the PaS can be devided into $3$ clusters which represent putative fast spiking interneurons (FS), regular interneurons (IN) and delayed spiking cells often WFS1^+^. I further stratified the IN cluster by dividing them into regular IN cells in the PaS and layer 1 IN cells (IN-L1). Cells recorded in the layer 1 were found exclusively in the IN cluster.
+
+A substantial amount of the cells were delayed spiking pyramidal cells (`r DSCount`) whereas a fraction were classified as interneurons (`r FSCount` Fast-Spiking Basket cell like interneurons (FS); `r INCount` layer 2 interneurons (IN); `r IN1Count` layer 1 interneurons (IN-L1)). This is expected considering that the majority of the cells in the PaS are WFS1 positive and only a fraction of the PaS are interneurons [@sammons_electrophysiological_2019].
+
+Cell properties were measured in whole-cell current-clamp configuration using hyper- and depolarisation current steps (step size of 40pA) (Figure \@ref(fig:CellCharacterisationFigure)A). Overall cells showed a similar resting potential (`r HDICt(ParameterTable[Parameter=="Vm (mV)",], unit="mV")`) with differences in the input resistance (R~in~) showing lower resistance in FS cells and very high R~in~ measured in IN-L1 cells (`r HDICt(ParameterTable[Parameter=="Rin (MOhm)",], unit="M\\Omega")`). Membrane capacitance (C~m~), a proxy for different properties of the cell such as size or conductance, was very low in IN-L1 cells which usually showed a small somata and shorter dendrites than pyramidal cells or FS basket like cells (`r HDICt(ParameterTable[Parameter=="Cm (pF)",], unit="mV")`). The strongest mean difference between cell types was measured between DS and IN-L1 cells between the different cell types (`r HDICt(ParameterTable[Parameter=="Vm (mV)",], unit="mV")`). However, C~m~ did not result in higher or lower firing frequency (`r HDICt(ParameterTable[Parameter=="Firing Frequency (Hz)",], unit="Hz")`) or R~in~. A similar relationship was observed when analysing the sag-ratio (Figure \@ref(fig:CellCharacterisationFigure)G). The sag-ratio is a measure of rebound after hyperpolarisation (`r HDICt(ParameterTable[Parameter=="Sag-Ratio",], unit="")`) whereas the medium after hyperpolarisation (mAHP) the corresponding response is after a finished depolarisation step (`r HDICt(ParameterTable[Parameter=="mAHP (mV)",], unit="mV")`).
+
+
+(ref:CellCharacterisationFigureShortCaption) Cell characterisation
+(ref:CellCharacterisationFigureCaption) **Cell characterisation.** Characterisation of cells in the PaS after current step injection (A) with the first spike coloured in red and the following in black. Other current injections are in grey. Scale bars reflect 0.1s and 20mV of Amplitude. B-G show the measured cell properties of the 214 cells as point clouds with its median as line and the bar plot represents the population estimates given the cell type.
+```{r CellCharacterisationFigure, fig.cap = '(ref:CellCharacterisationFigureCaption)', fig.scap='(ref:CellCharacterisationFigureShortCaption)', fig.height=8, fig.width=6, echo=F, fig.align='center'}
+CellCharPropertiesPlot <- readRDS(file = "/alzheimer/Daniel_Data/R/In-Vitro-ConnectivityAnalysis/Output/CellCharPropertiesPlot.rds")
+# take mAHP out?
+CellCharPropertiesPlot
+```
+
+To assess the excitability of cells the rheobase -- the current at which the first spike is trigged --  (Figure \@ref(fig:APPropertyPlot)H) was measured and quantified. DS cells and IN-L1 cells showed the highest excitability `r HDICt(ParameterTable[Parameter=="Rheobase (pA)",], unit="pA")`. This excitability was mainly achieved due to the high R~in~ and not a lower threshold in DS and IN-L1 cells. On the contrary, a lower threshold was measured in FS cells opposed to DS and IN-L1 cells (Figure \@ref(fig:APPropertyPlot)B) underlining the importance of the R~in~ as the possible main mechanism for excitability (`r HDICt(ParameterTable[Parameter=="Threshold (mV)",], unit="mV")`). A neuron can have different stages of excitation which can result in fast spike initiation, high firing frequency or sustained firing (see adaptation in Table \@ref(tab:CellParTable)). Considering the higher excitability of DS neurons in terms of spike initiation DS cells were overall less excitable than the interneurons. To quantify this overall excitability the gain was computed for all the neurons (Figure \@ref(fig:APPropertyPlot)I). The gain represents the increase in spiking relative to the input current (Spikes/pA) and is substantially higher in interneurons and especially in FS cells (`r HDICt(ParameterTable[Parameter=="Gain (Spikes/pA)",], unit="\\frac{Spikes}{pA}")`).
+Additionally, to the initiation of spiking and the gain, neurons were stimulated as mentioned before with a higher current step to induce the maximum firing frequency. FS cells showed the highest firing frequency and <DS cells the lowest (Figure \@ref(fig:CellCharacterisationFigure)E). Calculation of the mean difference revealed that FS neurons can fire 2 to 3 times as fast as DS, IN, or IN-L1 cells respectively (`r HDICt(ParameterCompTable[Parameter=="Firing Frequency (Hz) (µ)",], unit="Hz")`). This was confirmed through the minimum inter-spike interval which reflects the maximum instantaneous firing frequency of the cell (`r HDICt(ParameterCompTable[Parameter=="ISI min (s) (µ)",], unit="s")`). Another different measure of excitability can be the latency of a spike (Figure \@ref(fig:APPropertyPlot)D). This parameter refers to the time of the first spike after current injection and reflects how instantaneous or filtered a potential input to a cell is relayed further downstream. Spike latency was on average lower in all interneurons compared to DS cells (`r HDICt(ParameterCompTable[Parameter=="Latency (s) (µ)",], unit="s")`) indicating a fast response upon depolarisation, however, all cell types showed a wide range of possible latencies when spiking.
+
+(ref:APPropertyPlotShortCaption) Action potential properties
+(ref:APPropertyPlotCaption) **Action potential properties.** Action potentials of the four cell types (A) with their properties (B-I). The point clouds in B-I represent measurements of the cells and the corresponding boxplots reflect the estimated cell type population properties.
+```{r APPropertyPlot, fig.cap = '(ref:APPropertyPlotCaption)', fig.scap='(ref:APPropertyPlotShortCaption)',echo=F, fig.height=3, fig.asp=1.1, fig.align='center'}
+APPropertiesPlot <- readRDS(file = "/alzheimer/Daniel_Data/R/In-Vitro-ConnectivityAnalysis/Output/APPropertyPlot.rds")
+APPropertiesPlot
+
+```
+
+Additionally, to the excitability of the different cell types I quantified the shape of the action potentials (Figure \@ref(fig:APPropertyPlot)A). Several parameters were included in the analysis such as the full width at half maximum (Figure \@ref(fig:APPropertyPlot)F), The rising and falling component of the action potential (positive and negative slope -- see Table \@ref(tab:CellParTable)), and the resulting slope-ratio (Figure \@ref(fig:APPropertyPlot)G). These kinetic measures were often showing a wider and slower action potential in DS cells opposed to faster interneuron kinetics (FWHM -- `r HDICt(ParameterTable[Parameter=="FWHM (ms)",], unit="ms")`; sag-ratio -- `r HDICt(ParameterTable[Parameter=="Sag-Ratio",], unit="")`). Other parameters of the action potential are the action potential height (`r HDICt(ParameterTable[Parameter=="AP-Height (mV)",], unit="mV")`) which showed that on average interneurons had smaller APs than DS cells (`r HDICt(ParameterCompTable[Parameter=="AP Height (mV) (µ)",], unit="mV", sig="all")`) and IN and IN-L1 cells had the smallest APs (Figure \@ref(fig:APPropertyPlot)E).
+
+On the other hand, FS and IN cells had compared to DS or IN-L1 cells a larger after hyperpolarisation (AHP) directly followed after the action potential (`r HDICt(ParameterCompTable[Parameter=="AHP (mV) (µ)",], unit="mV")`). FS cells showed an especially prominent AHP after the action potential (Figure \@ref(fig:APPropertyPlot)C and Table \@ref(tab:CellParCompTable))) where in contrast DS cells and IN-L1 showed only little of an hyperpolarising overshoot. 
+
+A full list of parameter estimates can be found in Table \@ref(tab:CellParTable) of the appendix with all performed comparisons (Table \@ref(tab:CellParCompTable)).
+
+
+### Cell Connectivity
+
+```{r LoadReversalData, echo=FALSE}
+ReversalSlopeValues <- CellTypeReversal  <- readRDS("/alzheimer/Daniel_Data/R/Thesis/Data/ReversalSlopeValues.rds")
+#### reversal potential
+CellTypeReversal  <- readRDS("/alzheimer/Daniel_Data/R/Thesis/Data/reversalPotential.rds")
+colnames(CellTypeReversal) <- c("FS", "IN")
+CellType50CC <- readRDS(file = "/alzheimer/Daniel_Data/R/Thesis/Data/CellType50CC.rds")
+Connectivity_CellType <- readRDS(file = "/alzheimer/Daniel_Data/R/In-Vitro-ConnectivityAnalysis/Output/Connectivity_CellType.rds")
+HDILogOddsComparison <- readRDS(file = "/alzheimer/Daniel_Data/R/Thesis/HDILogOddsComparison.rds")
+HDILogOddsComparison[!grepl(pattern = "ChAT", GroupComparison), MouseLine:="PV"][!grepl(pattern = "PV", GroupComparison), MouseLine:="ChAT"]
+HDILogOddsComparison[is.na(MouseLine), MouseLine:="Comb"]
+
+```
+#### PV^+^ projections to the PaS
+Cells were recorded in whole-cell patch-clamp configuration *in-vitro* in PV-Cre and ChAT-Cre mice respectively. To investigate GABAergic connections from the medial septum to the PaS we measured cells in the PaS of PV-Cre mice expressing channelrhodopsin in the medial septum. After the cell characterisation we illuminated the septal terminals in the PaS using blue light and recorded inhibitory postsynaptic currents and potentials at different holding potentials ($-50mV$, resting potential ($Vm$), $-80mV$ Figure \@ref(fig:LED10CC)). Cells were stimulated over several trials ($>10$) and the signal averaged to increase signal-to-noise for detection. We tested $`r CellChar[MouseLine=="PV",.N,]`$ cells and got $`r CellChar[MouseLine=="PV"&Connected==1,.N,]`$ responses which were all hyperpolarising inputs except for one input onto a DS cell which showed an EPSP and could be abolished by NBQX. The $10ms$ stimulation generally resulted in a fast hyperpolarisation which could be reversed when changing the holding potential (Figure \@ref(fig:InputReversalPlot)A and B). 
+
+(ref:LED10CCShortCaption) Light induced synaptic inputs by activation of PV^+^ fibres 
+(ref:LED10CCCaption) **Light induced synaptic inputs by activation of PV^+^ fibres .** A shows a FS and an IN cell receiving GABAergic septal inputs. B inhibitory postsynaptic potentials at different holding potentials during 10Hz stimulation elicited with 10ms light pulses. Blue lines indicate the timing and length of stimulation. C shows a FS cell in voltage-clamp configuration held at -45mV during 4Hz, 10Hz, 20Hz, and 40Hz stimulation with 10ms light pulses.
+```{r LED10CC, fig.cap='(ref:LED10CCCaption)', fig.scap='(ref:LED10CCShortCaption)',echo=F, message=FALSE, warning=FALSE, fig.width=8, fig.align='center', fig.asp=0.6, fig.pos="H"}
+
+### add resting potential information
+LED10CCPlot <- readRDS(file = "/alzheimer/Daniel_Data/R/Thesis/Data/LightStimulation10Hz.rds")
+LED10CCPlot
+```
+
+To estimate the reversal potential and the amplitudes of synaptic inputs a bayesian hierarchical linear model was used. These models have the advantage that accounting for nested structures in the data (cells, animal, experimenter) is possible making population estimates more robust. I reparameterised the regular linear regression ($y = m \cdot x + n$) to estimate directly the reversal potential ($y=m \cdot x - slope \cdot V_{rev}$) and added an informative prior (some restricting soft bounds) with mean of -68mV taken from @gonzalez-sulser_gabaergic_2014 and 3 standard deviations. Since a total of only $`r CellChar[MouseLine=="PV"&Connected==1&CellType=="IN",.N,]`$ interneurons from layer 1 and 2 were connected I pooled them for further analysis. A comparison of the reversal potential showed that there was no detectable difference `r HDICt(HDIcalc(CellTypeReversal), unit="mV")` and calculation of the slope difference revealed that even though there might be a trend for IN cells to receive stronger inputs at any given holding potential it did not sufficiently differ (`r HDISummary(HDIcalc(DifferenceMat(ReversalSlopeValues, GroupStrings = c("FS", "IN"))), unit = "mV_{amp}/mV_{hold}")`). This was underlined by just extracting the point of $-50mV$ holding potential to investigate differences in strongly depolarised cells (Figure \@ref(fig:InputReversalPlot)C and D). As seen in D the the difference in mean amplitude between cell types was `r HDItxt(CellType50CC)` again showing a trend for FS cells to have slightly larger IPSPs. Considering that R~in~ and other passive membrane properties differ between the cell types (Table \@ref(tab:CellParCompTable)) it is possible that they could contribute to the variability between FS and IN cells. 
+
+(ref:InputReversalPlotShortCaption) Reversal input amplitude
+(ref:InputReversalPlotCaption) **Reversal input amplitude.** Amplitudes of GABAergic medial inputs to FS and IN cells of the PaS given a holding potential of a cell (A). Single dots represent a single input and the line is the median estimated population mean conditional on the cell type. The grey shaded area shows the 95\% highest density interval. (B) The estimated reversal potential for FS and IN cells. (C) A subset of inputs where the baseline was between -52mV and -48mV is shown next to the estimated input amplitude given the baseline is 50mV. The line in the point cloud represents the mean of the subset. (D) A comparison of the FS and IN responses reveal a tendency that IN inputs are larger but the zero-line is contained in the 95\% credible interval.
+```{r InputReversalPlot, fig.cap='(ref:InputReversalPlotCaption)', fig.scap='(ref:InputReversalPlotShortCaption)',echo=F, message=FALSE, warning=FALSE, fig.height=7, fig.width=6, fig.align='center', fig.pos='H'}
+ReversalLinePlot <- readRDS(file = "/alzheimer/Daniel_Data/R/Thesis/Data/ReversalLinePlot.rds")
+ReversalPotentialPlot <- readRDS(file = "/alzheimer/Daniel_Data/R/Thesis/Data/ReversalPotentialPlot.rds")
+AmpPVAt50mVCC <- readRDS(file = "/alzheimer/Daniel_Data/R/Thesis/Data/AmpPVAt50mVCC.rds")
+CellType50CCDeltaPlot <- readRDS(file = "/alzheimer/Daniel_Data/R/Thesis/Data/CellType50CCDeltaPlot.rds")
+
+DesignMatrix <- "
+AAAAAA
+AAAAAA
+AAAAAA
+BBCCCD
+BBCCCD
+"
+ReversalOverview <- ReversalLinePlot + ReversalPotentialPlot + AmpPVAt50mVCC+ CellType50CCDeltaPlot + plot_annotation(tag_levels = "A") + plot_layout(design = DesignMatrix, nrow = 1) & 
+  theme(plot.tag = element_text(size=16))
+ReversalOverview
+# 
+# ReversalLine + ReversalPot + plot_annotation(tag_levels = "A") + plot_layout(widths = c(6,1), ncol = 2) & 
+#   theme(plot.tag = element_text(size=16))
+```
+
+(ref:GabazineWashinShortCaption) Gabazine washin and input latency
+(ref:GabazineWashinCaption) **Gabazine washin and input latency** (A) Traces of light induced IPSPs (top) show that after washin of Gabazine IPSPs are abolished (bottom). (B) Gabazine reduces amplitude of IPSPs to noise level (B). (C) The estimated input latencies (for instantaneous LED light stimulation) with the raw data points for the inputs (FS: $`r paste0(InputOnsetsCells[CellType=="FS",N,],"/",InputOnsets[CellType=="FS",N,])`$; IN: $`r paste0(InputOnsets[CellType=="IN",N,],"/",InputOnsetsCells[CellType=="IN",N,])`$).
+
+```{r GabazinePlot, fig.cap='GabazineWashinCaption', fig.scap='GabazineWashinShortCaption',echo=F, message=FALSE, warning=FALSE, fig.width=7, fig.align='center', fig.height=4, fig.pos='H'}
+
+Onset_CellTypeShutter <- readRDS(file = "/alzheimer/Daniel_Data/R/Thesis/Data/Onset_CellTypeShutter.rds")*1e3
+colnames(Onset_CellTypeShutter) <- c("FS", "IN")
+OnsetShutter_HDI <- HDIcalc(Onset_CellTypeShutter)
+
+OnsetLED <- readRDS("Data/Onset_CellTypeLED.rds")*1e3
+colnames(OnsetLED) <- c("FS", "IN")
+OnsetLED_HDI <- HDIcalc(OnsetLED)
+
+### add GABAzine Model output
+### add resting potential information
+
+GabazineTrace <- readRDS(file = "/alzheimer/Daniel_Data/R/Thesis/Data/FS_GabazinePlot.rds")
+GabazineAmp <- readRDS(file = "/alzheimer/Daniel_Data/R/Thesis/Data/GabazineAmp.rds")
+OnsetLEDPlot <- readRDS(file = "/alzheimer/Daniel_Data/R/Thesis/Data/OnsetLEDPlot.rds")
+GabazineMu <- readRDS("Data/GabazineMu.rds")
+
+GabazineTrace + GabazineAmp + OnsetLEDPlot + plot_annotation(tag_levels = "A") + plot_layout(ncol = 3, widths = c(1.5,1, 1)) &
+  theme(plot.tag = element_text(size=16))
+```
+
+
+To establish the identity of GABAergic inputs we washed in $`r InputParameters[Mouseline=="PV"&Drug==T&!grepl(pattern = "NBQX", Comment),.(unique(Cell)),][,.N,]`$ recordings of FS cells $1\mu M$ Gabazine, a GABA~A~ blocker. Indeed we could show that the application of the drug abolished inputs (Figure \@ref(fig:GabazinePlot)A) and reduced the mean amplitude from `r round(GabazineMu[GroupComparison=="Control",3,],digits=2)`mV `r HDIEx(GabazineMu[GroupComparison=="Control",])` in the control to noise level (`r HDISummary(GabazineMu[GroupComparison=="Gabazine"], unit = "mV")`) as shown in Figure \@ref(fig:GabazinePlot)B. This indicates that septal PV^+^ projections which elicit IPSPs are mediated by GABA~A~-receptor activation. The input latency was measured to check whether responses were directly associated with the stimulation. In fact, we did not observe slow responses indicating GABA~b~ mediated hyperpolarisations. However, cells in the PaS as in many other areas have GABA~b~ receptors and will hyperpolarise when washing in the GABA~b~ antagonist baclofen (data not shown). The analysis of the latency (Figure \@ref(fig:GabazinePlot)C) was done using a linear hierarchical model with log-normal error distribution which is often observed for timing events. The hierarchical structure allowed me to account for different aspects of the experimental design such as cell types and LED or shutter stimulation. The LED, based on a pure electric activation, will give an instantaneous maximum light power and the shutter will take longer to open completely. This introduces some artefacts which can be accounted for. To estimate the cell type specific onsets inputs measured in current-clamp with an amplitude of more than 0.2mV and 3 times the baseline standard deviation were analysed. As prior for the mean I relied on data from @gonzalez-sulser_gabaergic_2014 where in the MEC a mean latency of 1.54ms was observed and added a wide error to account for a large range of values (roughly $0-30ms$). The result from this analysis show that FS cells and IN cells show very similar latencies (`r HDISummary(OnsetLED_HDI)`) but also revealed that indeed a physical shutter can almost double the times showing the importance of a thorough analysis (`r HDISummary(OnsetShutter_HDI)`).
+
+(ref:PVConnectivityShortCaption) Connectivity of PV^+^ MS cells to PaS 
+(ref:PVConnectivityCaption) **Connectivity of PV^+^ MS cells to PaS .** (A) A horizontal section stained for WFS1 (top) and against YFP (bottom) which is expressed by PV^+^ fibres coming from the MS. (B) The estimated connectivity as posterior distribution is shown in grey for different cell types (from top to bottom: DS, FS, IN IN-L1). The dark grey area represents the 95\% credible interval of the posterior distribution and the light grey show the remaining tails. The vertical lines show the median of the posterior and the black dots at the bottom of each distribution the raw frequentist point estimates. (C) Probability distribution can be compared to each other by calculating the log odds ratio for any given comparison. The red line indicates the region of practical equivalence. 
+
+```{r PVConnectivity, fig.cap='(ref:PVConnectivityCaption)', fig.scap='(ref:PVConnectivityShortCaption)',echo=F, message=FALSE, warning=FALSE, fig.width=8, fig.align='center', fig.asp=0.55, fig.pos='H'}
+PV_connectivity <- readRDS(file = "/alzheimer/Daniel_Data/R/Thesis/Data/PV_connectivity.rds")
+PV_comp <- readRDS(file = "/alzheimer/Daniel_Data/R/Thesis/Data/PV_comp.rds")
+PV_PaS_hor_Image_Plot <- readRDS(file = "/alzheimer/Daniel_Data/R/Thesis/Data/PV_PaS_hor_Image_Plot.rds")
+
+PV_PaS_hor_Image_Plot + PV_connectivity + PV_comp + plot_annotation(tag_levels = "A") + plot_layout(ncol = 3, width = c(1.7, 1.5,3)) &
+  theme(plot.tag = element_text(size=16))
+```
+
+For the quantification of connectivity a logistic regression with hierarchical structure was employed which allowed to estimate an overall septal connectivity to then further stratify and differentiate between PV^+^ and ChAT^+^ projections. Additionally, possible errors due to the nested structure of the experiments (cells, animal, and experimenter). A Bayesian approach is a great way to quantify binary data outcomes and was to some degree used in @desikan_target_2018 where a $beta$ distribution was used to estimate credible intervals of connectivity. In our case we will get a continuous $beta$ distribution as well, however, I was also able perform more calculations afterwards on the posterior since I modelled the experiment with its experimental structure. As weakly informative priors for the mean connectivity I used for PV^+^ connections data from @fuchs_local_2016 and @gonzalez-sulser_gabaergic_2014 and added added wide enough errors to allow the data to inform the analysis. For DS cells only $1$ of $`r CellChar[MouseLine=="PV"&CellType=="DS",.N,]`$ cells responded to stimulation which however could be blocked by NBQX. This translate to a credible interval of `r HDItxt(x = Connectivity_CellType[GroupComparison=="PV-DS"])` (Figure \@ref(fig:PVConnectivity)B) which means that there is little evidence in the data to assume a probability higher than 8% as an upper bound. In contrast a high proportion of FS cells ($`r CellChar[MouseLine=="PV"&CellType=="FS"&Connected==1,.N,]`$ of $`r CellChar[MouseLine=="PV"&CellType=="FS",.N,]`$) received GABAergic inputs. By far the most likely target of all the cell types (`r HDItxt(x = Connectivity_CellType[GroupComparison=="PV-FS"])`). This high connectivity is in line with previous studies and other areas resulting in disinhibition of the network. Due to a smaller sample size ($`r CellChar[MouseLine=="PV"&CellTypeLayer=="IN"&Connected==1,.N,]`$ of $`r CellChar[MouseLine=="PV"&CellTypeLayer=="IN",.N,]`$) estimates for IN cells will have a wider credible interval with `r HDItxt(x = Connectivity_CellType[GroupComparison=="PV-IN"])`. Surprisingly IN-L1 cells, which were previously not reported to receive PV^+^ inputs from the septum, were inhibited due to channelrhodopsin stimulation ($`r CellChar[MouseLine=="PV"&CellTypeLayer=="IN_1"&Connected==1,.N,]`$ of $`r CellChar[MouseLine=="PV"&CellTypeLayer=="IN_1",.N,]`$). This means that IN-L1 are receiving GABAergic inputs in `r HDItxt(x = Connectivity_CellType[GroupComparison=="PV-IN-L1"])` of the cases. To compare connectivities of each cell type to each other posterior distributions were used to calculate the log odds ratio (see equation \@ref(eq:logOddsRatio) for LOR). 
+
+\begin{align}
+Odds_{p} &= \frac{p}{1-p} \\
+LOR_{p_{1},p_{2}} &= \log \frac{Odds_{p_{1}}}{Odds_{p_{1}}}
+(\#eq:logOddsRatio)
+\end{align}
+
+The log odds ratio has the advantage of being firstly symmetric and secondly a nice interpretation when comparing probabilities since it can be calculated to the odds ratio indicating how much more something is likely to happen. Therefore, a LOR of 0 (OR of 1) would mean that both cell types have an equal chance of receiving PV^+^ inputs. In Figure \@ref(fig:PVConnectivity)B we can see that the strongest difference can be found between FS and DS cells with a LOR of `r HDItxt(HDILogOddsComparison[MouseLine=="PV"&GroupComparison=="PVFS-PVDS",])` meaning the odds of an FS being connected is almos $200$ times higher than for DS cells. The $95\%$ credible interval does not cross 0 nor does it enter the region of practical equivalence (for equation of ROPE see \@ref(eq:ROPE)) [@kruschke_doing_2015] as indicated by the red line. Similarly strong was the difference between IN-L1 cells and FS cells (`r HDItxt(HDILogOddsComparison[MouseLine=="PV"&GroupComparison=="PVIN_1-PVFS",])`) and moderately strong for IN and DS cells (`r HDItxt(HDILogOddsComparison[MouseLine=="PV"&GroupComparison=="PVIN-PVDS",])`) and IN and FS cells (`r HDItxt(HDILogOddsComparison[MouseLine=="PV"&GroupComparison=="PVIN-PVFS",])`). The LOR for DS to IN-L1 cells was comparable as was the LOR for IN to IN-L1 indicated by the credible interval crossing the ROPE (Figure \@ref(fig:PVConnectivity)B).
+
+\begin{equation}
+ROPE = \pi/\sqrt{3} \cdot 0.1
+(\#eq:ROPE)
+\end{equation}
+
+
+
+
+Given that fast GABA~A~ responses would allow a high time accuracy due to the fast kinetics PV^+^ cells of the septum therefore could be crucial for timed inhibition of PaS cells. To test for this possibility I depolarised a small subset of cells which received GABAergic inputs so that they were slightly over the spiking threshold resulting in continuous spiking of the cell (Figure \@ref(fig:PhaseLockInVitroPlot)A). The cell was inhibited over several trials (Figure \@ref(fig:PhaseLockInVitroPlot)B) and showed that spikes started reliably at a similar times over different trials and fire periodically afterwards until inhibited again (Figure \@ref(fig:PhaseLockInVitroPlot)B and C). Considering this timing of spikes we can represent every spike train for each single trial as a wave where a spike represents the peak of the wave and the middle of the pause the trough. This reparameterisation of a spike train to a sinusoidal wave allows us to calculate the phase at any given time point ($t$) for every single trial. Since a phase can be represented on a unit circle with $x=\cos \theta$ and $y=\sin \theta$ we can for every time point calculate the average vector length $\rho$ over all the trials for any given point in time (see equation \@ref(eq:rho)).
+\begin{equation}
+\rho_{t}=\sqrt{(\frac{1}{trial_{N}} \sum_{n=1}^{trial_{N}} sin \theta_{t})^2 + (\frac{1}{trial_{N}} \sum_{n=1}^{trial_{N}} cos \theta_{t})^2 }
+(\#eq:rho)
+\end{equation}
+A $\rho$ value of 1 indicates a perfect alignment whereas a value of 0 indicates none. In our case a high value translates to a high alignment in spike timing (Figure \@ref(fig:PhaseLockInVitroPlot)D) over all the trials. An increase can be observed close to the stimulation onset and is carried on as also seen in Figure \@ref(fig:PhaseLockInVitroPlot)C for some time before it is lost and $\rho$ returns to a lower value close to the expectation of a random distribution ($\rho_{random}=\frac{1}{\sqrt{trial_{N}}}$). Over all this illustrates that even when a cell is spiking GABAergic inputs from the MS can be sufficient to inhibit the cell enough to lock firing for a brief time. This observation is crucial for efficient phase locking in an active network.
+
+
+(ref:PhaseLockInVitroPlotShortCaption) Spike phase reset *in-vitro*
+(ref:PhaseLockInVitroPlotCaption) **Spike phase rest ** *in-vitro***.** A depolarised spiking putative interneuron (A) is inhibited using 10ms long light pulses at 10Hz. The raster plot (B) shows spike times throughout 20 trials over a time of 0.5s. C ,a closeup of (A), shows complete inhibition of spikes during stimulation times. D shows $\rho$ a value for phase locking of spikes. The maximum value of $\rho$ is 1 assuming perfect phase lock and the chance level 0.22. Blue lines indicate the timing and length of stimulation in A-D.
+
+```{r PhaseLockInVitroPlot, fig.cap='(ref:PhaseLockInVitroPlotCaption)', fig.scap='(ref:PhaseLockInVitroPlotShortCaption)', echo=F, message=FALSE, warning=FALSE, fig.width=8, fig.align='center', fig.asp=0.6, fig.pos='H'}
+PhaseLockInVitro <- readRDS(file = "/alzheimer/Daniel_Data/R/Thesis/Data/PhaseLockPanel.rds")
+PhaseLockInVitro
+```
+
+#### ChAT^+^ projections to the PaS
+
+Similarly, to the test of connectivity in PV-Cre animals we investigated projections from cholinergic MS cells to the PaS. Cholinergic projections are much more challenging to detect compared to glutamergic or GABAergic inputs. The reason for this is firstly the often found smaller amplitude and secondly the heterogeneity of possible membrane responses (\@ref(fig:ChATLEDStimulation)D).
+
+GABAergic responses could also be observed by stimulating ChAT^+^ fibres supporting previous evidence by @desikan_target_2018 that the medial septal ChAT^+^ fibres can co-release GABA. 
+A time locked input will hyperpolarise the cell for a short time but usually the hyperpolarisation will not be sustained over all the 3 pulses, hence, not allow for a continuous locking of frequencies.
+
+(ref:ChATLEDStimulationShortCaption) Light induced synaptic inputs by activation of ChAT^+^ fibres 
+(ref:ChATLEDStimulationCaption) **Light induced synaptic inputs by activation of ChAT^+^ fibres .** (A) A horizontal section stained for WFS1 (top) and against YFP (bottom) which is expressed by ChAT^+^ fibres coming from the MS. (B) The estimated connectivity as posterior distribution is shown in grey for different cell types (from top to bottom: DS, FS, IN IN-L1). The dark grey area represents the 95\% credible interval of the posterior distribution and the light grey show the remaining tails. The vertical lines show the median of the posterior and the black dots at the bottom of each distribution the raw frequentist point estimates. (C) Probability distribution can be compared to each other by calculating the log odds ratio for any given comparison. The red line indicates the region of practical equivalence.
+
+```{r ChATLEDStimulation, fig.cap='(ref:ChATLEDStimulationCaption)', fig.scap='(ref:ChATLEDStimulationShortCaption)',echo=F, message=FALSE, warning=FALSE, fig.width=8, fig.align='center', fig.asp=0.5}
+ChAT_IN1_Char <- readRDS("/alzheimer/Daniel_Data/R/Thesis/Data/ChAT_IN1_Char.rds")
+ChAT_IN1_Input10CC <- readRDS("/alzheimer/Daniel_Data/R/Thesis/Data/ChAT_IN1_Input10CC.rds")
+ChAT_IN1_CC_Frequency_Plot <- readRDS("/alzheimer/Daniel_Data/R/Thesis/Data/ChAT_IN1_CC_Frequency_Plot.rds")
+ChAT_HyperpolarisationType_Plot <- readRDS("/alzheimer/Daniel_Data/R/Thesis/Data/ChAT_HyperpolarisationType_Plot.rds")
+ChAT_IN1_Overview <- ChAT_IN1_Char + ChAT_IN1_Input10CC + ChAT_IN1_CC_Frequency_Plot +  ChAT_HyperpolarisationType_Plot + plot_annotation(tag_levels = "A") + plot_layout(ncol = 4, widths = c(1.3,1,1.1, 1.3)) & 
+  theme(plot.tag = element_text(size=16))
+ChAT_IN1_Overview
+```
+(ref:ChATConnectivityShortCaption) Connectivity of ChAT^+^ MS cells to PaS 
+(ref:ChATConnectivityCaption) **Connectivity of ChAT^+^ MS cells to PaS .** (A) A horizontal section stained for WFS1 (top) and against YFP (bottom) which is expressed by ChAT^+^ fibres coming from the MS. (B) The estimated connectivity as posterior distribution is shown in grey for different cell types (from top to bottom: DS, FS, IN IN-L1). The dark grey area represents the 95\% credible interval of the posterior distribution and the light grey show the remaining tails. The vertical lines show the median of the posterior and the black dots at the bottom of each distribution the raw frequentist point estimates. (C) Probability distribution can be compared to each other by calculating the log odds ratio for any given comparison. The red line indicates the region of practical equivalence  
+
+
+```{r ChATConnectivity, fig.cap='(ref:ChATConnectivityCaption)', fig.scap='(ref:ChATConnectivityShortCaption)',echo=F, message=FALSE, warning=FALSE, fig.width=8, fig.align='center', fig.asp=0.55}
+
+### add resting potential information
+ChAT_connectivity <- readRDS(file = "/alzheimer/Daniel_Data/R/Thesis/Data/ChAT_connectivity.rds")
+ChAT_comp <- readRDS(file = "/alzheimer/Daniel_Data/R/Thesis/Data/ChAT_comp.rds")
+ChAT_PaS_hor_Image_Plot <- readRDS(file = "/alzheimer/Daniel_Data/R/Thesis/Data/ChAT_PaS_hor_Image_Plot.rds")
+
+ChAT_PaS_hor_Image_Plot + ChAT_connectivity + ChAT_comp + plot_annotation(tag_levels = "A") + plot_layout(ncol = 3, width = c(1.7, 1.5,3)) &
+  theme(plot.tag = element_text(size=16))
+```
+Connections to the PaS were less heterogenous as compared to the connectivity in PV-mice (\@ref(fig:PVConnectivity)B) and show dominant projections to the superficial layers (\@ref(fig:PVConnectivity)A) with substantial connections to IN-L1 cells ($`r CellChar[MouseLine=="ChAT"&CellTypeLayer=="IN_1"&Connected==1,.N,]`$ of $`r CellChar[MouseLine=="ChAT"&CellTypeLayer=="IN_1",.N,]`$) resulting in an estimated connectivity of `r HDItxt(x = Connectivity_CellType[GroupComparison=="ChAT-IN-L1"])`. Similarly IN were innervated by ChAT^+^ projections ($`r CellChar[MouseLine=="ChAT"&CellTypeLayer=="IN"&Connected==1,.N,]`$ of $`r CellChar[MouseLine=="ChAT"&CellTypeLayer=="IN",.N,]`$) and showed a similar proportion of cells responding to light stimulation (`r HDItxt(x = Connectivity_CellType[GroupComparison=="ChAT-IN"])`). In contrast FS cells were less likely to receive inputs from MS cholinergic cells compared to MS PV^+^ projections (`r HDItxt(x = HDILogOddsComparison[GroupComparison=="PVFS-ChATFS"])`) but still had a tendency with `r HDItxt(x = Connectivity_CellType[GroupComparison=="ChAT-FS"])`to be stronger connected than DS cells (Connectivity of: `r HDItxt(x = Connectivity_CellType[GroupComparison=="ChAT-DS"])` and LOR of FS to DS: `r HDItxt(x = HDILogOddsComparison[GroupComparison=="PVFS-ChATFS"])`). Even though IN-L1 cells only represent a very small proportion of the cells in the PaS they were overrepresented in terms of cholinergic inputs.
+
+
+
+
+($`r CellChar[MouseLine=="PV"&CellTypeLayer=="IN_1"&Connected==1,.N,]`$ of $`r CellChar[MouseLine=="PV"&CellTypeLayer=="IN_1",.N,]`$). This means that IN-L1 are receiving GABAergic inputs in `r HDItxt(x = Connectivity_CellType[GroupComparison=="PV-IN-L1"])` of the cases. To compare connectivities of each cell type to each other posterior distributions were used to calculate the log odds ratio (see equation \@ref(eq:logOddsRatio) for LOR). 
+
+
+## In-Vivo
+
+(ref:OverViewInVivoShortCaption) Overview of *in-vivo* recordings
+(ref:OverViewInVivoCaption) **Overview of** *in-vivo* **recordings.** (A) shows a coronal section of the MS with the tracks of the silicon-probe (top) and YFP expression in the injection site of an PV-Cre animal. (B) A WFS1 labelled sagittal section of the PaS (top) with the visible track of the second silicon-probe (middle) ends in the PaS where the PV^+^ fibres terminate (bottom). (C) A 15s long single trial with a 5s long 8Hz pulse stimulation indicated with a blue line starting after 5s. (D) The resulting power calculated from the wavelet transform of one trial. (E) The power density is derived from the same wavelet transform but uses a frequency normalisation.
+
+```{r OverViewInVivo, fig.cap='(ref:OverViewInVivoCaption)', fig.scap='(ref:OverViewInVivoShortCaption)', echo=F, fig.height=7, fig.width=6, warning=FALSE}
+WTSingleExampleOverviewPlot <- readRDS(file = "/alzheimer/Daniel_Data/R/Thesis/Data/WTSingleExampleOverviewPlot.rds")
+WTSingleExampleOverviewPlot
+```
+
+
+
+(ref:WaveletPowerNestedShortCaption) Power density in the PaS and MEC
+(ref:WaveletPowerNestedCaption) **Power density in the PaS and MEC.** Power density of 15s averaged over multiple trials. The y-axis shows the frequency (Hz) and the x-axis the time. Stimulation occurs from 5s to 10s (blue line). Major columns refer to the recording location (PaS or MEC) and minor columns to the stimulation location (MS or fibre stimulation). Each row shows a different stimulation frequency (2Hz, 4Hz, 8Hz, 16Hz, 32Hz). Bright yellow indicates high power density and black low power density. An increase in power can be observed in stimulation blocks at the stimulation frequency when stimulating in the MS and is absent during fibre stimulation.
+
+```{r WaveletPowerNested, fig.cap='(ref:WaveletPowerNestedCaption)', fig.scap='(ref:WaveletPowerNestedShortCaption)', echo=F, fig.align='center', fig.height=5, fig.width=7, warning=FALSE}
+PSDWaveletOverview <- readRDS(file = "/alzheimer/Daniel_Data/R/Thesis/Data/PSDWaveletOverview.rds")
+PSDWaveletOverview
+```
+
+(ref:PSDnestedOverviewShortCaption) Power density spectrum in the PaS and MEC
+(ref:PSDnestedOverviewCaption) **Power density spectrum in the PaS and MEC.** Power density spectrum during different stimulation frequencies (rows) extracted from the wavelet transform for time blocks before the stimulation (Pre - black line), during the stimulation (Stim - blue line) and directly after (Post - grey line). The dashed lines indicate the stimulation frequency whereas continuous lines show the mean power density and the SEM. The two left columns show responses in the PaS after septal stimulation (column 1) and stimulation of the fibres in the PaS (column 2). Analogous the two right columns show the response in the MEC. The frequency on the x-axis is log~2~ transformed. PaS with MS stimulation: 9 session/4 animals; PaS with fibre stimulation: 9 session/4 animals; MEC with MS stimulation: 7 session/4 animals; MEC with fibre stimulation: 11 session/6 animals.
+
+```{r PowerDensityNested, fig.cap='(ref:PSDnestedOverviewCaption)', fig.scap='(ref:PSDnestedOverviewShortCaption)', echo=F, fig.align='center', fig.height=6, fig.width=7, warning=FALSE}
+PowerDensitySpectralPlotNestedOverview <- readRDS(file = "/alzheimer/Daniel_Data/R/Thesis/Data/PowerDensitySpectralPlotNestedOverview.rds")
+PSDN <- readRDS("Data/PSDN.rds")
+PowerDensitySpectralPlotNestedOverview
+```
+
+(ref:PSDSingleStimLineFacetPlotShortCaption) Power density is increased during MS stimulation
+(ref:PSDSingleStimLineFacetPlotCaption) **Power density is increased during MS stimulation.** Power density before (Pre), during (Stim), and after stimulation (Post) of the MS cells somatically (left) and fibre stimulation at the recording site (right). Increased power density during stimulation in the PaS (top) and the MEC (bottom) can be observed with MS stimulation but not using fibre stimulation. PaS with MS stimulation: 9 session/4 animals; PaS with fibre stimulation: 9 session/4 animals; MEC with MS stimulation: 7 session/4 animals; MEC with fibre stimulation: 11 session/6 animals.
+
+```{r PSDSingleStimLineFacetPlot, fig.cap='(ref:PSDSingleStimLineFacetPlotCaption)', fig.scap='(ref:PSDSingleStimLineFacetPlotShortCaption)', echo=F, fig.align='center', fig.height=5, fig.width=7, warning=FALSE}
+PSDStimLinelog10PlotFacet <- readRDS(file = "/alzheimer/Daniel_Data/R/Thesis/Data/PSDStimLinelog10PlotFacet.rds")
+PSDStimLinelog10PlotFacet
+```
+
+
+(ref:WaveletRhoNestedShortCaption) Phase lock in the PaS and MEC
+(ref:WaveletRhoNestedCaption) **Phase lock in the PaS and MEC.** The phase lock was quantified as $\rho$ where a value of 1 (yellow) indicates perfect phase alignment over repeated trials and 0 (dark blue) none. The random $\rho$ given N trials is expected to be $1/\sqrt{N_{trial}}$ (MS stimulation: 0.2; fibre stimulation: 0.183). The y-axis shows the frequency (Hz) and the x-axis the time. Stimulation occurs from 5s to 10s (blue line). Major columns refer to the recording location (PaS or MEC) and minor columns to the stimulation location (MS or fibre stimulation). Each row shows a different stimulation frequency (2Hz, 4Hz, 8Hz, 16Hz, 32Hz).
+
+```{r WaveletRhoNested, fig.cap='(ref:WaveletRhoNestedCaption)', fig.scap='(ref:WaveletRhoNestedShortCaption)',echo=F, fig.align='center', fig.height=5, fig.width=7, warning=FALSE}
+RhoWaveletOverview <- readRDS(file = "/alzheimer/Daniel_Data/R/Thesis/Data/RhoWaveletOverview.rds")
+RhoWaveletOverview
+```
+
+(ref:SpectrumRhoNestedShortCaption) Phase lock spectrum in the PaS and MEC
+(ref:SpectrumRhoNestedCaption) **Phase lock spectrum in the PaS and MEC.** Log Odds Ratio of $\rho$ and the expected random ($\rho_{random}$) during different stimulation frequencies (rows) extracted from the wavelet transform for time blocks before the stimulation (Pre - black line), during the stimulation (Stim - blue line) and directly after (Post - grey line). The dashed lines indicate the stimulation frequency whereas the continuous lines show the mean $\rho$ Log Odds Ratio with its SEM. The log odds ratio represents a log fold change in phase lock compared to $\rho_{random}$. The two left columns show responses in the PaS after septal stimulation (column 1) and stimulation of the fibres in the PaS (column 2). Analogous the two right columns show the response in the MEC. The frequency on the x-axis is log~2~ transformed. PaS with MS stimulation: 9 session/4 animals; PaS with fibre stimulation: 9 session/4 animals; MEC with MS stimulation: 7 session/4 animals; MEC with fibre stimulation: 11 session/6 animals.
+
+```{r SpectrumRhoNested, fig.cap='(ref:SpectrumRhoNestedCaption)', fig.scap='(ref:SpectrumRhoNestedShortCaption)', echo=F, fig.align='center', fig.height=5, fig.width=7, warning=FALSE}
+RhoLogOddsFreqSpectrumPlotFacetOverview <- readRDS(file = "/alzheimer/Daniel_Data/R/Thesis/Data/RhoLogOddsFreqSpectrumPlotFacetOverview.rds")
+RhoLogOddsFreqSpectrumPlotFacetOverview
+```
+
+(ref:RhoLogOddsModelFrequencyShortCaption) $\rho$ log odds dependend on stimulation frequency
+(ref:RhoLogOddsModelFrequencyCaption) $\rho$ **log odds dependend on stimulation frequency.** Log Odds Ratio of $\rho$ indicating phase lock during different stimulation frequencies. Black represents measurements before stimulation (Pre), blue during stimulation (Stim), and grey after stimulation (Post). The left half shows responses in the PaS and the right half in the MEC. The top row were measurements from MS stimulation and the bottowm row from fibre stimulation in the PaS or MEC. Single dots are values from sessions. The line is the estimated mean population response with the 95\% credible interval indicated as shaded area. The frequency on the x-axis is log~2~ transformed. PaS with MS stimulation: 9 session/4 animals; PaS with fibre stimulation: 9 session/4 animals; MEC with MS stimulation: 7 session/4 animals; MEC with fibre stimulation: 11 session/6 animals.
+
+```{r RhoLogOddsModelFrequency, fig.cap='(ref:RhoLogOddsModelFrequencyCaption)', fig.scap='(ref:RhoLogOddsModelFrequencyShortCaption)', echo=F, fig.align='center', fig.height=5, fig.width=7, warning=FALSE}
+RhoLogOddsModelFrequencyPlot <- readRDS(file = "/alzheimer/Daniel_Data/R/Thesis/Data/RhoLogOddsModelFrequencyPlot.rds")
+RhoLogOddsModelFrequencyPlot
+```
+

@@ -1,3 +1,9 @@
 # Discussion {#discussion}
 
 Here is a review of existing methods.
+
+
+- difference to MEC
+- what does the PaS add to functional output
+- no visible difference in theta between MEC and PaS --> explanation 
+- expected more of a role during running --> locking of phases when cells are more active --> grild cells and phase precession
