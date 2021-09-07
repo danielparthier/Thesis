@@ -2,8 +2,29 @@
 
 Here is a review of existing methods.
 
+Cell Type count:
+This is expected considering that the majority of the cells in the PaS are WFS1 positive and only a fraction of the PaS are interneurons [@sammons_electrophysiological_2019].
+
+sag ratio in DS --> oscillations as in stellate cells --> more likely than in interneurons discuss chapman
+
+
+The activation of the MS lead to an increase of $\rho$ during the stimulation period and dropped off quickly after the stimulation was finished.  --> no entraining of LFP for longer --> see fuhrmann et all for contraast
+
+cholinergic cells don't fire in theta in the MS and are more likely to increase
+
+toth show projections from hippocampus to MS
+hangya --> gabaergic role in hippocampal circuit
+
 
 - difference to MEC
 - what does the PaS add to functional output
 - no visible difference in theta between MEC and PaS --> explanation 
 - expected more of a role during running --> locking of phases when cells are more active --> grild cells and phase precession
+
+
+- PV projections are important but require excitatory drive in the target region
+- can be due to a synchronised upstream region such as the hippocampus --> then PV cells might be able to improve phase timing of PaS
+- under lines crucial role of MS which manages on global scale timing which could be important for computation downstream by synchronising events
+- PaS is positioned in a way that it is important for the MEC due to large fraction of projections target MEC cells --> glutamergic drive downstream and again regulated by MS to improve timing
+- therefore drive can move downstream without losing accuracy of original synchronising signal of MS --> allows small region to entrain theta globally
+- PaS has especially many glutamergic cells in a high density package --> distribution of drive on dorsal ventral axis?

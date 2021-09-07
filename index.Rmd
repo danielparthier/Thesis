@@ -40,8 +40,8 @@ The experimental work of this thesis was completed from xx.xx.xx to xx.xx.xx und
 knitr::write_bib(c(
   .packages(), 'bookdown', 'knitr', 'rmarkdown', 'data.table'
 ), 'packages.bib')
-knitr::opts_chunk$set(dev = 'pdf')
-#knitr::opts_chunk$set(dev = 'png')
+#knitr::opts_chunk$set(dev = 'pdf')
+knitr::opts_chunk$set(dev = 'png')
 library('magrittr')
 library('png')
 library('ggh4x')
@@ -50,6 +50,7 @@ library('data.table')
 library('patchwork')
 library('knitr')
 library('kableExtra')
+library('readxl')
 
 InputParameters <- readRDS(file = "/alzheimer/Daniel_Data/R/Thesis/Data/InputParameters.rds")
 ParameterCompTable <- readRDS(file = "/alzheimer/Daniel_Data/R/In-Vitro-ConnectivityAnalysis/Output/ParameterComparisons.rds")
