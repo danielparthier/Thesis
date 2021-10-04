@@ -1,4 +1,7 @@
 bookdown::pdf_book:
+  toc: no
+  # toc-depth: 3
+#  latex_engine: lualatex
   includes:
     in_header: preamble.tex
 #  citation_package: natbib
