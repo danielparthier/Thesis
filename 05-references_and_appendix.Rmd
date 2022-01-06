@@ -11,7 +11,9 @@
 <div id="refs"></div>
 
 \endgroup
-\clearpage
+
+<!-- \clearpage -->
+
 \backmatter
 # Appendix {- #appendix}
 ## Additional Tables {-}
@@ -177,5 +179,5 @@ Diese Arbeit hat in gleicher oder ähnlicher Form noch keiner anderen Prüfungsb
 \vspace{24pt}
 
 \noindent
-Berlin,  `r format(x = as.Date(Sys.Date()), '%d.%m.%Y')`
+Berlin, 28.09.2021
 \vspace*{\fill}

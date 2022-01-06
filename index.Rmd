@@ -32,19 +32,21 @@ subtitle: |
   | submitted to the Department of Biology, Chemistry and Pharmacy
   | of Freie Universität Berlin
   | by
-biblio-style: apalike
-# toc-depth: 3
+# biblio-style: apalike
 output:
-    pdf_document2:
-      extra_dependencies: ["flafter"]
-      toc: no
-    citation_package: biblatex
-    keep_tex: yes
-    biblatexoptions: [backend=biber, maxbibnames=999]
+  bookdown::pdf_book:
+    includes:
+      in_header: "preamble.tex"
+    extra_dependencies: ["flafter"]
+    toc: false
+  citation_package: biblatex
+  keep_tex: yes
+  biblatexoptions: [backend=biber, maxbibnames=999]
 indent: true
 header-includes:
-- \AtBeginDocument{\frontmatter}
+  - \AtBeginDocument{\frontmatter}
 ---
+
 \pagenumbering{gobble} 
 \newpage
 
