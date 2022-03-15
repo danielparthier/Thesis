@@ -2,22 +2,22 @@
 library(data.table)
 ReloadFiles <- F
 SpikeTableTotal <- readRDS("Data/SpikeTableTotalV2.rds")
-# SpikeTableTotal
-# SpikeTableTotal[,UniqueID:=as.character(paste(ClusterFac, Session), sep = "_"),] 
-# UnitOverview <- SpikeTableTotal[ClusterNr>1&!grepl(pattern = "mua", x = ClusterFac, ignore.case = T),.N,by=.(UniqueID)] 
-# SpikeTableTotal[grepl(pattern = "mua",ClusterFac, ignore.case = T),ClusterNr:=1,]
-# #SpikeTableTotal[!grepl(pattern = "mua",ClusterFac, ignore.case = T),ClusterNr:=1,]
-# SpikeTableTotal[ClusterNr>1,ClusterNr:=strtoi(unlist(strsplit(x = as.character(ClusterFac), split = "_"))[1]),by=ClusterFac][,SpikeIdx:=as.integer(SpikeTime*2e4),]
-# SpikeTableTotal[,`:=`(RecDate=strtoi(unlist(strsplit(Session, split = "_"))[2]), AnimalID=unlist(strsplit(Session, split = "_"))[1]),by=Session]
-# 
-# 
-# SpikeTableTotal[UniqueID%in%UnitOverview$UniqueID&hyper_block_frequency<0.5, MeanFreq:=1/mean(diff(SpikeTime), na.rm = T),by=.(UniqueID)]
-# SpikeTableTotal[UniqueID%in%UnitOverview$UniqueID, MeanFreq:=mean(MeanFreq, na.rm = T),by=.(UniqueID)]
-# SpikeTableTotal[UniqueID%in%UnitOverview$UniqueID,]
-# SpikeTableTotal[ClusterNr>1&MeanFreq<1,ClusterNr:=1,by=.(UniqueID)]
-# 
-# LowOccurenceDropOut <- SpikeTableTotal[ClusterNr>1, .N,by=.(UniqueID)][N<3e3, ][,UniqueID,]  
-# SpikeTableTotal[UniqueID %in% LowOccurenceDropOut,ClusterNr:=1,] 
+SpikeTableTotal
+SpikeTableTotal[,UniqueID:=as.character(paste(ClusterFac, Session), sep = "_"),]
+UnitOverview <- SpikeTableTotal[ClusterNr>1&!grepl(pattern = "mua", x = ClusterFac, ignore.case = T),.N,by=.(UniqueID)]
+SpikeTableTotal[grepl(pattern = "mua",ClusterFac, ignore.case = T),ClusterNr:=1,]
+#SpikeTableTotal[!grepl(pattern = "mua",ClusterFac, ignore.case = T),ClusterNr:=1,]
+SpikeTableTotal[ClusterNr>1,ClusterNr:=strtoi(unlist(strsplit(x = as.character(ClusterFac), split = "_"))[1]),by=ClusterFac][,SpikeIdx:=as.integer(SpikeTime*2e4),]
+SpikeTableTotal[,`:=`(RecDate=strtoi(unlist(strsplit(Session, split = "_"))[2]), AnimalID=unlist(strsplit(Session, split = "_"))[1]),by=Session]
+
+
+SpikeTableTotal[UniqueID%in%UnitOverview$UniqueID&hyper_block_frequency<0.5, MeanFreq:=1/mean(diff(SpikeTime), na.rm = T),by=.(UniqueID)]
+SpikeTableTotal[UniqueID%in%UnitOverview$UniqueID, MeanFreq:=mean(MeanFreq, na.rm = T),by=.(UniqueID)]
+SpikeTableTotal[UniqueID%in%UnitOverview$UniqueID,]
+SpikeTableTotal[ClusterNr>1&MeanFreq<1,ClusterNr:=1,by=.(UniqueID)]
+
+LowOccurenceDropOut <- SpikeTableTotal[ClusterNr>1, .N,by=.(UniqueID)][N<3e3, ][,UniqueID,]
+SpikeTableTotal[UniqueID %in% LowOccurenceDropOut,ClusterNr:=1,]
 
 
 # if(ReloadFiles==T) {
@@ -50,7 +50,7 @@ MSTestunits <- SpikeTableTotal[ClusterNr>1&frequency==1&UnitLoc=="MS",.N,by=Uniq
 
 SpikeTableTotal[UniqueID%in%MSTestunits,]
 
-SpikeTableMS1Hz[pulse_nr==3305,]
+#SpikeTableMS1Hz[pulse_nr==3305,]
 
 SpikeTableMS1Hz <- SpikeTableTotal[UniqueID %in% MSTestunits & frequency==1&UnitLoc=="MS",] 
 SpikeTableMS1Hz <- SpikeTableMS1Hz[!is.na(SingleStimDiff),.(UniqueID, UnitLoc, SingleStimDiff, hyper_block, PulseSingleNumber, AnimalID, RecDate),] 
@@ -80,6 +80,8 @@ SpikeTableTotal[UniqueID%in%PV_Units,PVPos:=TRUE,][UniqueID%in%PV_negUnits,PVPos
 ### PV-Units per session
 SpikeTableTotal[UniqueID %in% PV_Units, unique(UniqueID), by= Session][,.N,by=Session] 
 
+# limit scaling to -20/20
+SpikeZScoreTable[ScaleN < -20,ScaleN:= -20,][ScaleN > 20,ScaleN:= 20,]
 
 #### make plot for z-score ####
 SinglePulseZScorePlot <- ggplot(data = SpikeZScoreTable[StimRoundPos %between% c(-0.035,0.035)]  , aes(x=StimRoundPos*1e3, y=OrderID, fill=ScaleN))+
@@ -89,7 +91,7 @@ SinglePulseZScorePlot <- ggplot(data = SpikeZScoreTable[StimRoundPos %between% c
   scale_x_continuous(expand=c(0,0), name = "Time to Stimulation (ms)", breaks = seq(-40,40,10))+
   geom_hline(yintercept = ScaleCutOff-0.5, lty="dashed", size=0.2, colour="gray")+
   #scale_fill_viridis_c()+
-  scale_fill_gradient2(limits = c(-max(SpikeZScoreTable[,max(ScaleN),]),SpikeZScoreTable[,max(ScaleN),]), guide = guide_colorbar(title = "Z-Score"))+
+  scale_fill_gradient2(labels = c("> -20","-10","0","10","> 20"), limits = c(-20,20), guide = guide_colorbar(title = "Z-Score"))+
   theme_bw()
 
 SpikeTableTotal[UniqueID%in%MSTestunits,unique(MeanFreq),]
@@ -154,15 +156,74 @@ ChR2UnitResponse <- RasterPlot + SinglePulseZScorePlot + plot_layout(widths = c(
 saveRDS(object = ChR2UnitResponse, "/alzheimer/Daniel_Data/R/Thesis/Data/ChR2UnitResponse.rds")
 
 
-UnitDiversity <- PVCCFPlotZoom + PVCCFPlotOut + PVThetaPhase + plot_layout(nrow = 3) + plot_annotation(tag_levels = "A")  &
+SpikeTableTotal[,`:=`(PaSThetaX=sin(PaSThetaPhase*pi/180+pi), PaSThetaY=cos(PaSThetaPhase*pi/180+pi)),]
+PhasePlot <- SpikeTableTotal[(PaSThetaPower/PaSDeltaPower)>3&UniqueID%in%MSTestunits&grepl(pattern = "MEC|PaS", PaSLoc)&stimulation_block==0,.(X=mean(PaSThetaX, na.rm = T), Y=mean(PaSThetaY, na.rm = T) , PV=unique(PVPos)), by=.(UniqueID)]
+#PhasePlot <- SpikeTableTotal[(PaSThetaPower/PaSDeltaPower)>3&UniqueID%in%MSTestunits&stimulation_block==0,.(X=mean(PaSThetaX, na.rm = T), Y=mean(PaSThetaY, na.rm = T) , PV=unique(PVPos)), by=.(UniqueID)]
+
+PhasePlot[PV==TRUE, PVStain:="pos",][PV==F, PVStain:="neg",]
+PhaseCirclePlot <- 
+  ggplot(data = PhasePlot, mapping = aes(x=X, y=Y, colour=PVStain))+
+  # ggforce::geom_circle(aes(x0 = x, y0 = y, r =r, fill = NULL, linetype="dashed"),data=data.frame(x=c(0,0),y=c(0,0),r=c(0.5,1), size=c(0.001,0.001)), inherit.aes = FALSE)+
+  # scale_y_continuous(limits = c(-0.8,0.8))+
+  #scale_x_continuous(limits = c(-0.8,0.8))+
+  annotate("path", x=0+ 1*cos(seq(0,2*pi,length.out=100)), y=0+1*sin(seq(0,2*pi,length.out=100)), size=0.2)+
+  annotate("path", x=0+ .5*cos(seq(0,2*pi,length.out=100)), y=0+.5*sin(seq(0,2*pi,length.out=100)), size=0.2)+
+  annotate(geom = "segment", x = c(-1,0), xend = c(1,0), y = c(0,-1), yend = c(0,1), size=0.1)+
+  # geom_hline(yintercept = 0, size=0.2)+
+  # geom_vline(xintercept = 0, size=0.2)+
+  geom_point(data = PhasePlot[PV==FALSE,])+
+  geom_point(data = PhasePlot[PV==TRUE,])+
+  #  geom_line(data = data.frame(X=seq(-1,1,length.out = 400), Y=sin(seq(0,4*pi, length.out = 400))/2-2.5), aes(x=X,y=Y), inherit.aes = F)+
+  annotate(geom = "text", x = c(3.5), y = c(-3.1)+2.5, label=c("90°"), size=3.5, vjust="outward")+
+  annotate(geom = "text", x = c(3.9), y = c(-2.5)+2.5, label=c("180°"), size=3.5, vjust="outward", hjust="inward")+
+  annotate(geom = "text", x = c(4.5), y = c(-1.9)+2.5, label=c("270°"), size=3.5, vjust="outward")+
+  annotate(geom = "text", x = c(5.1), y = c(-2.5)+2.5, label=c("0°"), size=3.5, vjust="outward", hjust="outward")+
+  geom_line(data = data.frame(X=seq(-1,3,length.out = 400)+3, Y=sin(seq(0,4*pi, length.out = 400))/2), aes(x=X,y=Y), inherit.aes = F)+
+  
+  scale_colour_manual("", values = c("neg" = "black", "pos" = "red"), labels=c(bquote(PV^"-"),bquote(PV^"+")))+
+  annotate(geom = "text", x = c(.4,0.75), y = c(-.4,-0.75), label=c("0.5","1"), hjust="inward", vjust="outward")+
+  annotate(geom = "text", x = c(1.05), y = c(0), label=c("90°"), hjust="inward", size=5)+
+  annotate(geom = "text", x = c(-1.05), y = c(0), label=c("270°"), hjust="outward", size=5)+
+  annotate(geom = "text", x = c(0), y = c(-1.1), label=c("180°"), vjust="outward", size=5)+
+  annotate(geom = "text", x = c(0), y = c(1.1), label=c("0°"), vjust="outward", size=5)+
+  #annotate(geom = "text", x = c(1.05,-1.05,0,0), y = c(0,0,-1.1,1.1), label=c("90°", "270°", "180°", "0°"), hjust="outward", size=5)+
+  #  annotate(geom = "text", x = c(1.05,-1.05,0,0), y = c(0,0,-1.1,1.1), label=c("90°", "270°", "180°", "0°"), hjust="outward", size=5)+
+  #  annotate(geom = "text", x = c(-.25, -0.17,.25,0.6), y = c(-3.1,-2.5,-1.9,-2.5), label=c("90°", "180°","270°", "0°"), size=3.5)+
+  #coord_equal(xlim = c(-1.5,1.5), ylim = c(-3,1.1))+
+  coord_equal(xlim = c(-1.6,7), ylim = c(-1.2,1.2))+
+  #coord_flip()+
+  #theme_minimal()
+  theme_void()+theme(legend.position = "left", legend.text=element_text(size=10))
+
+PhaseDesignMatrix <- "
+A
+B
+C
+D
+D
+"
+UnitDiversity <- PVCCFPlotZoom + PVCCFPlotOut + PVThetaPhase + PhaseCirclePlot + plot_layout(design = PhaseDesignMatrix) + plot_annotation(tag_levels = "A")  &
   theme(plot.tag = element_text(size=16))
-saveRDS(object = UnitDiversity, "/alzheimer/Daniel_Data/R/Thesis/Data/UnitDiversity.rds")
+saveRDS(object = UnitDiversity, "Data/UnitDiversity.rds")
+saveRDS(object = PVCCFPlotZoom, "Data/PVCCFPlotZoom.rds")
+saveRDS(object = PVCCFPlotOut, "Data/PVCCFPlotOut.rds")
+saveRDS(object = PVThetaPhase, "Data/PVThetaPhase.rds")
+saveRDS(object = PhaseCirclePlot, "Data/PhaseCirclePlot.rds")
 
 
-PVCCFPlotZoom + PVCCFPlotOut + PVThetaPhase + plot_layout(widths = c(1,2,2)) + plot_annotation(tag_levels = "A")  &
+
+PVThetaPhase / PhaseCirclePlot + plot_layout(heights = c(1,2)) + plot_annotation(tag_levels = "A")  &
   theme(plot.tag = element_text(size=16))
 
 saveRDS(SpikeTableTotal[ClusterNr>1&grepl("MS|PaS|MEC", UnitLoc),.N,by=.(AnimalID, UniqueID, UnitLoc, Session)], "/alzheimer/Daniel_Data/R/Thesis/Data/UnitCountSummary.rds")
+
+
+
+
+
+
+
+
 
 ######
 plot(PVCCF$CCF)
@@ -235,56 +296,7 @@ plot(sin(sinePhase)^2)
 plot(cos(sinePhase)^2)
 plot(sin(sinePhase), cos(sinePhase))
 
-SpikeTableTotal[,`:=`(PaSThetaX=sin(PaSThetaPhase*pi/180+pi), PaSThetaY=cos(PaSThetaPhase*pi/180+pi)),]
-PhasePlot <- SpikeTableTotal[(PaSThetaPower/PaSDeltaPower)>3&UniqueID%in%MSTestunits&grepl(pattern = "MEC|PaS", PaSLoc)&stimulation_block==0,.(X=mean(PaSThetaX, na.rm = T), Y=mean(PaSThetaY, na.rm = T) , PV=unique(PVPos)), by=.(UniqueID)]
-PhasePlot[PV==TRUE, PVStain:="pos",][PV==F, PVStain:="neg",]
-PhaseCirclePlot <- 
-  ggplot(data = PhasePlot, mapping = aes(x=X, y=Y, colour=PVStain))+
- # ggforce::geom_circle(aes(x0 = x, y0 = y, r =r, fill = NULL, linetype="dashed"),data=data.frame(x=c(0,0),y=c(0,0),r=c(0.5,1), size=c(0.001,0.001)), inherit.aes = FALSE)+
- # scale_y_continuous(limits = c(-0.8,0.8))+
-  #scale_x_continuous(limits = c(-0.8,0.8))+
-  annotate("path", x=0+ 1*cos(seq(0,2*pi,length.out=100)), y=0+1*sin(seq(0,2*pi,length.out=100)), size=0.2)+
-  annotate("path", x=0+ .5*cos(seq(0,2*pi,length.out=100)), y=0+.5*sin(seq(0,2*pi,length.out=100)), size=0.2)+
-  annotate(geom = "segment", x = c(-1,0), xend = c(1,0), y = c(0,-1), yend = c(0,1), size=0.1)+
-  # geom_hline(yintercept = 0, size=0.2)+
-  # geom_vline(xintercept = 0, size=0.2)+
-  geom_point(data = PhasePlot[PV==FALSE,])+
-  geom_point(data = PhasePlot[PV==TRUE,])+
-#  geom_line(data = data.frame(X=seq(-1,1,length.out = 400), Y=sin(seq(0,4*pi, length.out = 400))/2-2.5), aes(x=X,y=Y), inherit.aes = F)+
-    annotate(geom = "text", x = c(3.5), y = c(-3.1)+2.5, label=c("90°"), size=3.5, vjust="outward")+
-  annotate(geom = "text", x = c(3.9), y = c(-2.5)+2.5, label=c("180°"), size=3.5, vjust="outward", hjust="inward")+
-  annotate(geom = "text", x = c(4.5), y = c(-1.9)+2.5, label=c("270°"), size=3.5, vjust="outward")+
-  annotate(geom = "text", x = c(5.1), y = c(-2.5)+2.5, label=c("0°"), size=3.5, vjust="outward", hjust="outward")+
-  geom_line(data = data.frame(X=seq(-1,3,length.out = 400)+3, Y=sin(seq(0,4*pi, length.out = 400))/2), aes(x=X,y=Y), inherit.aes = F)+
-    
-    scale_colour_manual("", values = c("pos" = "red", "neg" = "black"), labels=c(bquote(PV^"-"),bquote(PV^"+")))+
-  annotate(geom = "text", x = c(.4,0.75), y = c(-.4,-0.75), label=c("0.5","1"), hjust="inward", vjust="outward")+
-  annotate(geom = "text", x = c(1.05), y = c(0), label=c("90°"), hjust="inward", size=5)+
-    annotate(geom = "text", x = c(-1.05), y = c(0), label=c("270°"), hjust="outward", size=5)+
-    annotate(geom = "text", x = c(0), y = c(-1.1), label=c("180°"), vjust="outward", size=5)+
-    annotate(geom = "text", x = c(0), y = c(1.1), label=c("0°"), vjust="outward", size=5)+
-    #annotate(geom = "text", x = c(1.05,-1.05,0,0), y = c(0,0,-1.1,1.1), label=c("90°", "270°", "180°", "0°"), hjust="outward", size=5)+
-    #  annotate(geom = "text", x = c(1.05,-1.05,0,0), y = c(0,0,-1.1,1.1), label=c("90°", "270°", "180°", "0°"), hjust="outward", size=5)+
-#  annotate(geom = "text", x = c(-.25, -0.17,.25,0.6), y = c(-3.1,-2.5,-1.9,-2.5), label=c("90°", "180°","270°", "0°"), size=3.5)+
-  #coord_equal(xlim = c(-1.5,1.5), ylim = c(-3,1.1))+
-    coord_equal(xlim = c(-1.6,7), ylim = c(-1.2,1.2))+
-    #coord_flip()+
-  #theme_minimal()
-  theme_void()+theme(legend.position = "left", legend.text=element_text(size=10))
 
-PhaseDesignMatrix <- "
-A
-B
-C
-D
-D
-"
-UnitDiversity <- PVCCFPlotZoom + PVCCFPlotOut + PVThetaPhase + PhaseCirclePlot + plot_layout(design = PhaseDesignMatrix) + plot_annotation(tag_levels = "A")  &
-  theme(plot.tag = element_text(size=16))
-saveRDS(object = UnitDiversity, "/alzheimer/Daniel_Data/R/Thesis/Data/UnitDiversity.rds")
-
-PVThetaPhase / PhaseCirclePlot + plot_layout(heights = c(1,2)) + plot_annotation(tag_levels = "A")  &
-  theme(plot.tag = element_text(size=16))
 
 
 sin(c(-180,90,0,-90)*pi/180+pi)

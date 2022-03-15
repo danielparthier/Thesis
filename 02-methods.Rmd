@@ -1,54 +1,62 @@
 # Materials and methods {#methods}
 
 ## Animals
-Animal husbandry and experimental procedures were conducted in accordance with European guidelines and with permission from local regulatory authorities (Berlin Landesamt für Gesundheit und Soziales, permits G0092/15 and G0150/17). The total number of animals used for this study were as follows: 32 transgenic PV-Cre mice (JAX: 008069) and 25 transgenic ChAT-Cre (MMRRC: 037336). Animals were housed on a 12h reversed day-night cycle with access to food and water *ad libitum*.
+
+Animal husbandry and experimental procedures were conducted in accordance with European guidelines and with permission from local regulatory authorities (Berlin Landesamt für Gesundheit und Soziales, permits G0092/15 and G0150/17). The total number of animals used for this study were as follows: 32 transgenic PV-Cre mice (JAX: 008069) and 25 transgenic ChAT-Cre (MMRRC: 037336). Animals were housed on a 12 hours reversed day-night cycle with access to food and water *ad libitum*.
 
 ## Surgical procedures
 
 ### Stereotactic injections {#injections}
-For all surgical procedures, the mice were anaesthetised with isoflurane ($1.5\%\ vol/vol$ in oxygen, CP-Pharma, Burgdorf, Germany) and received carprofen ($5\frac{mg}{kg} \textstyle$) as analgesia in addition to subcutaneous application of lidocaine as local analgesia at the site of incision. Animals were placed into a stereotaxic frame where they were fixed and stabilised with ear bars. After disinfecting the place of incision with iodide (Betaisodana, Mundipharma, Frankfurt, Germany) a $1\ cm$ incision was performed on the midline. The skin was fixed to the side so that the skull was easily accessible.
+
+For all surgical procedures, the mice were anaesthetised with isoflurane ($1.5\%\ vol/vol$ in oxygen, CP-Pharma, Burgdorf, Germany) and received carprofen ($5\ \frac{mg}{kg} \textstyle$) as analgesia in addition to subcutaneous application of lidocaine as local analgesia at the site of incision. Animals were placed into a stereotaxic frame where they were fixed and stabilised with ear bars. After disinfecting the place of incision with iodide (Betaisodana, Mundipharma, Frankfurt, Germany) a $1\ cm$ incision was performed on the midline. The skin was fixed to the side so that the skull was easily accessible.
 
 (ref:MS-Injection-SchemeShortCaption) Injection site in medial septum
-(ref:MS-Injection-SchemeCaption) **Injection site in medial septum.** Schematic of medial septum (blue) and the injection canula (black). A $10^{\circ}$ angle is used to avoid damage to superior sagittal sinus which is located on the midline on top of the brain surface (not shown).
+(ref:MS-Injection-SchemeCaption) **Injection site in medial septum.** Schematic of medial septum (blue) and the injection cannula (black). A $10^{\circ}$ angle is used to avoid damage to superior sagittal sinus which is located on the midline on top of the brain surface (not shown).
+
 ```{r MS-Injection-Scheme, fig.cap = '(ref:MS-Injection-SchemeCaption)', fig.scap='(ref:MS-Injection-SchemeShortCaption)',fig.show='hold', fig.pos='H',echo=FALSE, fig.height=3, fig.align='center'}
 InjMS  <- grImport2::pictureGrob(grImport2::readPicture(rawToChar(rsvg::rsvg_svg("Figures/Schemes/MS_schema.svg"))))
 wrap_elements(gridExtra::arrangeGrob(InjMS), clip=T)
 ```
+
 \noindent
-The skull was virtually levelled using a robot stereotaxic (Neurostar, Tübingen, Germany) and a craniotomy drilled at the position of entry (in $mm$ from bregma: $0.7$ anterior, $0.7$ lateral). A NanoFil syringe (World Precision Instruments, Sarasota County, FL, US) with a 34‐gauge needle with adeno-associated virus 1 (AAV1) containing the plasmid for the yellow fluorescent protein (YFP) and channelrhodopsin (*pAAV-EF1*$\alpha$*-doublefloxed-hChR2(H134R)-EYFP-WPR* at $6.26\cdot 10^{11}\ VG/ml$) was placed with a $10^{\circ}$ angle through the hole and slowly moved $3.8\ mm$ downwards along the dorsoventral axis to the MS (Figure \@ref(fig:MS-Injection-Scheme)). The position was held for $5\ min$ before $200\ nl$ of the virus was injected at a rate of $40\ nl/min$. The needle was left for a further $5\ min$ and then slowly withdrawn. The animal's temperature was maintained at $37^{\circ}C$ during the whole procedure, its eyes were covered with eye-cream to provide moisture, and anaesthesia was checked regularly. The incision was closed and the animal was put back into its home cage to recover. Animals generally woke up in less than $15\ min$. Animals' body weight and general wellbeing were checked daily, and they were allowed to recover for at least $4$ weeks.
+The skull was virtually levelled using a robot stereotaxic (Neurostar, Tübingen, Germany) and a craniotomy drilled at the position of entry (in $mm$ from bregma: $0.7$ anterior, $0.7$ lateral). A NanoFil syringe (World Precision Instruments, Sarasota County, FL, US) with a 34‐gauge needle with adeno-associated virus 1 (AAV1) containing the plasmid for the yellow fluorescent protein (YFP) and channelrhodopsin (*pAAV-EF1*$\alpha$*-doublefloxed-hChR2(H134R)-EYFP-WPR* at $6.26\cdot 10^{11}\ VG/ml$) was placed with a $10^{\circ}$ angle through the hole and slowly moved $3.8\ mm$ downwards along the dorsoventral axis to the MS (Figure \@ref(fig:MS-Injection-Scheme)). The position was held for $5\ min$ before $200\ nl$ of the virus was injected at a rate of $40\ nl/min$. The needle was left for a further $5\ min$ and then slowly withdrawn. The animal's temperature was maintained at $37\ ^{\circ}C$ during the whole procedure, its eyes were covered with eye-cream to provide moisture, and anaesthesia was checked regularly. The incision was closed and the animal was put back into its home cage to recover. Animals generally woke up in less than $15\ min$. Animals' body weight and general wellbeing were checked daily, and they were allowed to recover for at least $4$ weeks.
 
 ### Head fixation bar implant
-Previously injected animals subject to *in-vivo* awake head-fixed recordings were given a headbar implant. Surgical procedures were similar to what was described in section \@ref(injections). However, after the incision a craniotomy was made at a more anterolateral position (in mm from bregma: $1.2$ anterior, $1.2$ lateral to the right) to place a screw for grounding. The screw was fixed without damaging the surface of the brain. The skull surface was then sealed using OptiBond™ Solo Plus (KerrHawe SA, Bioggio, Switzerland) and a gold pin attached to the screw was stabilised using CHARISMA® ABC A1 (Kulzer GmbH, Hanau, Germany). A headbar was placed over the skull, aligned to midline and fixed with Paladur® dental cement (Kulzer GmbH, Hanau, Germany). The animal was then released back to the home cage where it could recover for at least two days before habituation began.
 
-## *In-Vitro* Recordings
+Previously injected animals subject to *in-vivo* awake head-fixed recordings were given a headbar implant. Surgical procedures were similar to what was described in section \@ref(injections). However, after the incision a craniotomy was made at a more anterolateral position (in $mm$ from bregma: $1.2$ anterior, $1.2$ lateral to the right) to place a screw for grounding. The screw was fixed without damaging the surface of the brain. The skull surface was then sealed using OptiBond™ Solo Plus (KerrHawe SA, Bioggio, Switzerland) and a gold pin attached to the screw was stabilised using CHARISMA® ABC A1 (Kulzer GmbH, Hanau, Germany). A headbar was placed over the skull, aligned to midline and fixed with Paladur® dental cement (Kulzer GmbH, Hanau, Germany). The animal was then released back to the home cage where it could recover for at least two days before habituation began.
+
+## *In-vitro* recordings
 
 ### Slice preparation
 
 ```{r AnimalNumbersInVitro,echo=FALSE}
 AnimalNumbersInvitro <- CellChar[,.(unique(Date)),by=MouseLine][,.N,by=MouseLine]
 ```
-To prepare acute slices, animals (n = `r AnimalNumbersInvitro[MouseLine=="PV", N]` PV-Cre mice, n = `r AnimalNumbersInvitro[MouseLine=="ChAT", N]` ChAT-Cre mice ) were deeply anaesthetised under isoflurane and then decapitated. The brain was quickly removed and transferred to ice-cold ($\sim 4^{\circ}C$) slicing solution (sucrose artificial cerebral spinal fluid -- sACSF). sACSF contained (mM): 87 NaCl, 26 NaHCO~3~, 10 Glucose, 50 Sucrose, 2.5 KCl, 1.25 NaH~2~PO~4~, 0.5 CaCl~2~, 3 MgCl~2~·6H~2~O.
-The forebrain was separated from the rest by making a coronal cut. The posterior part of the brain was separated with a sagittal cut between the two hemispheres. The two posterior hemispheres and the forebrain were placed on a vibrating blade microtome (VT1200S, Leica Biosystems, Wetzlar, Germany) to produce $400\ \mu m$ horizontal and coronal slices (Figure \@ref(fig:PaS-Scheme) B) which were then transferred for storage to an interface chamber for up to 1-6 hours. Slices were superfused constantly with oxygenated ACSF (in mM: 119 NaCl, 26 NaHCO~3~, 10 Glucose, 2.5 KCl, 1 NaH~2~PO~4~, 2.5 CaCl~2~, 1.3 MgCl~2~·6H~2~O). All solutions were saturated in oxygen using carbogen (95% O~2~ and 5% CO~2~).
-To verify channelrhodopsin (ChR2) expression fluorescence was checked in medial septal coronal sections under a fluorescence microscope (DM3000, Leica Biosystems, Wetzlar, Germany) prior to recordings.
+
+To prepare acute slices, animals (n = `r AnimalNumbersInvitro[MouseLine=="PV", N]` PV-Cre mice, n = `r AnimalNumbersInvitro[MouseLine=="ChAT", N]` ChAT-Cre mice ) were deeply anaesthetised under isoflurane and then decapitated. The brain was quickly removed and transferred to ice-cold ($\sim 4\ ^{\circ}C$) slicing solution (sucrose artificial cerebral spinal fluid -- sACSF). sACSF contained (mM): 87 NaCl, 26 NaHCO~3~, 10 Glucose, 50 Sucrose, 2.5 KCl, 1.25 NaH~2~PO~4~, 0.5 CaCl~2~, 3 MgCl~2~·6H~2~O. The forebrain was separated from the rest by making a coronal cut. The posterior part of the brain was separated with a sagittal cut between the two hemispheres. The two posterior hemispheres and the forebrain were placed on a vibrating blade microtome (VT1200S, Leica Biosystems, Wetzlar, Germany) to produce $400\ \mu m$ horizontal and coronal slices (Figure \@ref(fig:PaS-Scheme) B) which were then transferred for storage to an interface chamber for up to 1-6 hours. Slices were superfused constantly with oxygenated ACSF (in mM: 119 NaCl, 26 NaHCO~3~, 10 Glucose, 2.5 KCl, 1 NaH~2~PO~4~, 2.5 CaCl~2~, 1.3 MgCl~2~·6H~2~O). All solutions were saturated in oxygen using carbogen (95% O~2~ and 5% CO~2~). To verify channelrhodopsin (ChR2) expression fluorescence was checked in medial septal coronal sections under a fluorescence microscope (DM3000, Leica Biosystems, Wetzlar, Germany) prior to recordings.
 
 ### Slice recordings
-Slices were transferred from the interface storage to the recording chamber where they were constantly superfused (at $3.5\ ml/min$) with oxygenated ACSF and maintained at $32-34^{\circ}C$. Cells were visually identified using an upright microscope (BX51W1, Olympus, Tokyo,  Japan) and infrared differential interference contrast microscopy through a digital camera (XM10-IR, Olympus, Tokyo, Japan). To record in the whole-cell patch-clamp configuration, a borosilicate glass electrode (Harvard Apparatus, Holliston, Massachusetts, USA) was pulled on a DMZ-Universal-Electrode-Puller (Zeitz-Instruments, Martinsried, Germany) to $2.5-6\ M \Omega$ and filled with intracellular solution (in mM: 120 K-Gluconate, 10 HEPES, 10 KCl, 5 EGTA, 2 MgSO~4~·7H~2~O, 3 MgATP, 1 NaGTP, 5 Phosphocreatine Na, 0.2% Biocytin). Data was recorded with a Multiclamp 700A/B amplifier (Molecular Devices, LLC., San Jose, CA, USA) and signals were filtered at $10\ kHz$, sampled at $20\ kH$z and then digitised. Data was digitised by a Digidata 1550 (Molecular Devices, LLC., San Jose, CA, USA) for use in pClamp. In recordings in IGOR Pro 6.12 (WaveMetrics, Inc., Portland , OR, USA) or WinWCP V5.3.7 [@dempster_new_1997], a BNC-2090 interface board (PCI 6035E A/D Board, National Instruments, Austin, Texas, USA) or a USB-6229 BNC (National Instruments, Austin, Texas, USA) was used for digitisation. After opening, cells were held in voltage-clamp at $-60\ mV$ to measure series resistance and assess access. As a quality control, cells with more than $25\ M\Omega$ series resistance were excluded from analysis. Pipette capacitance compensation was applied to cells which were then switched to current-clamp configuration with bridge compensation to perform a characterisation of somatic properties (current steps of $40$-$100\ pA$).
+
+Slices were transferred from the interface storage to the recording chamber where they were constantly superfused (at $3.5\ ml/min$) with oxygenated ACSF and maintained at $32-34\ ^{\circ}C$. Cells were visually identified using an upright microscope (BX51W1, Olympus, Tokyo, Japan) and infrared differential interference contrast microscopy through a digital camera (XM10-IR, Olympus, Tokyo, Japan). To record in the whole-cell patch-clamp configuration, a borosilicate glass electrode (Harvard Apparatus, Holliston, Massachusetts, USA) was pulled on a DMZ-Universal-Electrode-Puller (Zeitz-Instruments, Martinsried, Germany) to $2.5-6\ M \Omega$ and filled with intracellular solution (in mM: 120 K-Gluconate, 10 HEPES, 10 KCl, 5 EGTA, 2 MgSO~4~·7H~2~O, 3 MgATP, 1 NaGTP, 5 Phosphocreatine Na, 0.2% Biocytin). Data was recorded with a Multiclamp 700A/B amplifier (Molecular Devices, LLC., San Jose, CA, USA) and signals were filtered at $10\ kHz$, sampled at $20\ kH$z and then digitised. Data was digitised by a Digidata 1550 (Molecular Devices, LLC., San Jose, CA, USA) for use in pClamp. In recordings in IGOR Pro 6.12 (WaveMetrics, Inc., Portland , OR, USA) or WinWCP V5.3.7 [@dempster_new_1997], a BNC-2090 interface board (PCI 6035E A/D Board, National Instruments, Austin, Texas, USA) or a USB-6229 BNC (National Instruments, Austin, Texas, USA) was used for digitisation. After opening, cells were held in voltage-clamp at $-60\ mV$ to measure series resistance and assess access. As a quality control, cells with more than $25\ M\Omega$ series resistance were excluded from analysis. Pipette capacitance compensation was applied to cells which were then switched to current-clamp configuration with bridge compensation to perform a characterisation of somatic properties (current steps of $40$-$100\ pA$).
 
 #### Cell characterisation
-The parameters we analysed were resting membrane potential ($V_{m}$), input resistance ($R_{in}$) determined by a linear fit through the input output curve, the membrane capacitance ($C_{m}$) by determining the time constant $\tau$ using an exponential fit during the hyper and depolarising steps, and the $sag$ $ratio$ i.e. the ratio between the steady state of a hyperpolarisation step and lowest deflection during the hyperpolarisation. The medium afterhyperpolarisation ($mAHP$) is a value reflecting the difference between the $Vm$ and the voltage during a window of $200\ ms$ after the depolarisation of the cell. The $rheobase$ was estimated by a linear fit through the linear part of a spike input output curve and represents the current required to trigger a spike. To determine the excitability, we estimated the $gain$ by using the slope of the linear fit. The maximum spike count before cells saturated was used to estimate the maximum $firing$ $frequency$ and for the $threshold$ of action potentials the differential was of the membrane potential was determined and the point of $5$% of the maximum was used as threshold. The $positve$ and $negative$ $slope$ were derived from the same differential as maximum and minimum, respectively, and a ratio of the two was calculated ($slope\ ratio$). The width of action potentials was determined by the full width half maximum ($FWHM$). The action potential height ($AP-height$) was calculated as the difference between the $threshold$ and the maximum height of the action potential, whereas the after hyperpolarisation ($AHP$) represents the difference between the $threshold$ and the maximum negative voltage deflection during a $2ms$ window after the action potential onset. Further, the inter-spike-intervals were calculated as the difference between $2$ action potentials (AP $1$ and AP $2$ - $ISI_{1/2}$, AP $2$ and AP $3$ - $ISI_{2/3}$, AP $9$ and AP $10$ - $ISI_{9/10}$) and the $ISI_{min}$ reported as the minimum time delay between $2$ spikes. As $adaptation$ we used the ratio between the $ISI_{2/3}$ and $ISI_{9/10}$. If a cell did not produce the required number of spikes to calculate $ISI_{9/10}$, we used the $ISI$ of the last action potentials. Parameters were extracted using a custom script written in IGOR Pro 6.12.
+
+The parameters we analysed were resting membrane potential ($V_{m}$), input resistance ($R_{in}$) determined by a linear fit through the input output curve, the membrane capacitance ($C_{m}$) by determining the time constant $\tau$ using an exponential fit during the hyper and depolarising steps, and the $sag$ $ratio$ i.e. the ratio between the steady state of a hyperpolarisation step and lowest deflection during the hyperpolarisation. The medium afterhyperpolarisation ($mAHP$) is a value reflecting the difference between the $Vm$ and the voltage during a window of $200\ ms$ after the depolarisation of the cell. The $rheobase$ was estimated by a linear fit through the linear part of a spike input output curve and represents the current required to trigger a spike. To determine the excitability, we estimated the $gain$ by using the slope of the linear fit. The maximum spike count before cells saturated was used to estimate the maximum $firing$ $frequency$ and for the $threshold$ of action potentials the differential of the membrane potential was determined and the point of $5$% of the maximum was used as threshold. The $positve$ and $negative$ $slope$ were derived from the same differential as maximum and minimum, respectively, and a ratio of the two was calculated ($slope\ ratio$). The width of action potentials was determined by the full width half maximum ($FWHM$). The action potential height ($AP-height$) was calculated as the difference between the $threshold$ and the maximum height of the action potential, whereas the after hyperpolarisation ($AHP$) represents the difference between the $threshold$ and the maximum negative voltage deflection during a $2\ ms$ window after the action potential onset. Further, the inter-spike-intervals were calculated as the difference between $2$ action potentials (AP $1$ and AP $2$ - $ISI_{1/2}$, AP $2$ and AP $3$ - $ISI_{2/3}$, AP $9$ and AP $10$ - $ISI_{9/10}$) and the $ISI_{min}$ reported as the minimum time delay between $2$ spikes. As $adaptation$ we used the ratio between the $ISI_{2/3}$ and $ISI_{9/10}$. If a cell did not produce the required number of spikes to calculate $ISI_{9/10}$, we used the $ISI$ of the last action potentials. Parameters were extracted using a custom script written in IGOR Pro 6.12.
 
 #### Cell connectivity
-To assess septal connectivity to the PaS, channelrhodopsin expressing fibres in the PaS were activated by $10 ms$ pulses of blue light ($470\ nm$) from a LED (CoolLED pE-2, Andover, UK) or a mercury lamp (with a TTL-controlled mechanical shutter from Uniblitz, Vincent Associates, NY, United States) coupled to the 60x objective. To elicit inhibitory (IPSPs) or excitatory postsynaptic potentials (EPSPs) and inhibitory (IPSCs) or excitatory postsynaptic currents (EPSCs), a range of light pulse frequencies ($10$, $20$, $40\ Hz$) was used. Additionally, inputs hidden due to low driving force or simultaneously occurring synaptic inputs were unmasked by changing the holding potential of the cell from $-60\ mV$, to $-80\ mV$ and then to $-50\ mV$ after at least $10$ trials, respectively. To detect inputs, the average of single trials was calculated and the peak detected based on $3\sigma$ differences from the baseline ($100\ ms$) before stimulation onset. Subsequently, the amplitude was determined for all stimulation points in the stimulation train by taking the maximum deflection. The baseline for every stimulation point was logged as $10\ ms$ prior to onset. In a subset of recordings, monosynaptic inputs were validated by at first blocking with $1\  \mu M$ tetrodotoxin (TTX, Tocris Bioscience, Bristol, UK) - a sodium channel blocker which abolishes action potentials - and then reinstating inputs by depolarising the terminals with $100\  \mu M$ 4-Aminopyridine (4-AP, Tocris Bioscience, Bristol, UK) - a potassium channel blocker. Furthermore, receptor identity was identified by applying $1\ \mu M$ GABA~A~-receptor blocker Gabazine (SR 95531 hydrobromide, Tocris Bioscience, Bristol, UK),  $10\ \mu M$ NBQX (Tocris Bioscience, Bristol, UK) - an AMPA receptor antagonist -, $25\ \mu M$ D-AP5 (Tocris Bioscience, Bristol, UK) - an NMDA receptor antagonist -  or a cocktail made of $10\ \mu M$ DH$\beta$E (Tocris Bioscience, Bristol, UK), $0.1\ \mu M$ MLA (Tocris Bioscience, Bristol, UK) and $10\ \mu M$ Mecamylamine hydrochloride (Tocris Bioscience, Bristol, UK) to block nicotinic receptor activation.
 
-Liquid junction potential was not corrected for. Slices were fixed in $4\%$ paraformaldehyde (PFA) overnight for immunohistochemistry stainings. 
+To assess septal connectivity to the PaS, channelrhodopsin expressing fibres in the PaS were activated by $10\ ms$ pulses of blue light ($470\ nm$) from a LED (CoolLED pE-2, Andover, UK) or a mercury lamp (with a TTL-controlled mechanical shutter from Uniblitz, Vincent Associates, NY, United States) coupled to the 60x objective. To elicit inhibitory (IPSPs) or excitatory postsynaptic potentials (EPSPs) and inhibitory (IPSCs) or excitatory postsynaptic currents (EPSCs), a range of light pulse frequencies ($10$, $20$, $40\ Hz$) was used. Additionally, inputs hidden due to low driving force or simultaneously occurring synaptic inputs were unmasked by changing the holding potential of the cell from $-60\ mV$, to $-80\ mV$ and then to $-50\ mV$ after at least $10$ trials, respectively. To detect inputs, the average of single trials was calculated and the peak detected based on $3\sigma$ differences from the baseline ($100\ ms$) before stimulation onset. Subsequently, the amplitude was determined for all stimulation points in the stimulation train by taking the maximum deflection. The baseline for every stimulation point was logged as $10\ ms$ prior to onset. In a subset of recordings, monosynaptic inputs were validated by at first blocking with $1\  \mu M$ tetrodotoxin (TTX, Tocris Bioscience, Bristol, UK) -- a sodium channel blocker which abolishes action potentials -- and then reinstating inputs by depolarising the terminals with $100\  \mu M$ 4-Aminopyridine (4-AP, Tocris Bioscience, Bristol, UK) -- a potassium channel blocker. Furthermore, receptor identity was identified by applying $1\ \mu M$ GABA~A~-receptor blocker Gabazine (SR 95531 hydrobromide, Tocris Bioscience, Bristol, UK), $10\ \mu M$ NBQX (Tocris Bioscience, Bristol, UK) -- an AMPA receptor antagonist --, $25\ \mu M$ D-AP5 (Tocris Bioscience, Bristol, UK) -- an NMDA receptor antagonist -- or a cocktail made of $10\ \mu M$ DH$\beta$E (Tocris Bioscience, Bristol, UK), $0.1\ \mu M$ MLA (Tocris Bioscience, Bristol, UK) and $10\ \mu M$ Mecamylamine hydrochloride (Tocris Bioscience, Bristol, UK) to block nicotinic receptor activation.
+
+Liquid junction potential was not corrected for. Slices were fixed in $4\%$ paraformaldehyde (PFA) overnight for immunohistochemistry stainings.
 
 ## *In-vivo* recordings
 
 ### Head-fixed awake immobile recordings {#immobile}
+
 For head-fixed recordings in immobile mice, animals were habituated to the setup and trained to stand still in a small paper tunnel whilst being fixed to the headbar. Animals were trained for 5-7 days with increasing time duration ($5\ min$, $10\ min$, $30\ min$, $1\ h$) until they were able to remain still for up to an hour. After training sessions, mice were rewarded with a droplet of sweetened condensed milk. After the training period, animals were anaesthetised as described in \@ref(injections). A craniotomy was performed at $1\ mm$ anterior and $1\ mm$ lateral from bregma and another craniotomy at $2.5\ mm$ lateral on the left and $0\ mm$ anteroposterior from lambda. The probe targeting the MS was placed with an angle of $10^{\circ}$ and lowered $4.3\ mm$ from the brain surface. Two ISO-3x-tet-lin optrodes (NeuroNexus, Ann Arbor, MI, USA) with 32 channels -- distributed over $3$ shanks -- each were used to record in the MS and PaS simultaneously and allowed for light stimulation of both regions. The optrode targeting the PaS was lowered perpendicular to the brain's surface at a distance of $2.5$-$3.5\ mm$. After the recording session Kwik-Cast (World Precision Instruments Ltd, Hertfordshire, UK) was applied to the craniotomies to protect the brain from drying out.
 
 (ref:ProbeSchemeShortCaption) Schematic of probe placement in MS and PaS
-(ref:ProbeSchemeCaption) **Schematic of probe placement in MS and PaS.** (A) Location of silicon probe in the anterior part to reach the MS. A fibre attached to the probe allows for local stimulation of ChR2 expressin cells (green) using blue LED light (blue cone). (B) Recording side in the PaS with silicon probe. Analogously to the MS, light stimulation can be achieved to activate projections from the MS (green) to the PaS on the fibre level using blue light (blue cone). 
+(ref:ProbeSchemeCaption) **Schematic of probe placement in MS and PaS.** (A) Location of silicon probe in the anterior part to reach the MS. A fibre attached to the probe allows for local stimulation of ChR2 expressing cells (green) using blue LED light (blue cone). (B) Recording side in the PaS with silicon probe. Analogously to the MS, light stimulation can be achieved to activate projections from the MS (green) to the PaS on the fibre level using blue light (blue cone).
 
 ```{r Probe-Scheme, fig.scap='(ref:ProbeSchemeShortCaption)', fig.cap = '(ref:ProbeSchemeCaption)',fig.show='hold', fig.align='center',fig.pos='H',echo=FALSE, fig.width=6}
 ProbeMS  <- readPNG(source = "Figures/Schemes/MS_schema_Probe.png", native = T)
@@ -63,32 +71,42 @@ ProbeMS + ProbePaS +  plot_annotation(tag_levels = "A") + plot_layout(widths = c
 ```
 
 <!-- ### Head-Fixed Awake Recordings on Treadmill -->
+
 <!-- For head-fixed recordings on the treadmill animals were water deprived to encourage them to drink during the training sessions. During the training sessions animals were trained to run on the treadmill whilst being fixed at the headbar.  -->
 
 <!-- (ref:LinearTrackSchemeShortCaption) Schematic of linear track -->
+
 <!-- (ref:LinearTrackSchemeCaption) **Schematic of linear track.** In A the wall of the reward zone (120-140 cm) is striped so that it can be distinguished by the mouse from the rest of the environment. The animal had to reach the reward zone, wait for 3 s and then got a water reward. B represents the same task but without the beaconed reward zone. -->
+
 <!-- ```{r LinearTrackScheme, fig.cap = '(ref:LinearTrackSchemeCaption)', fig.scap='(ref:LinearTrackSchemeShortCaption)',echo=FALSE, fig.width=6} -->
+
 <!-- #knitr::include_graphics("Figures/Schemes/LinearTrackCombine.pdf") -->
+
 <!-- beaconed <- wrap_elements(cowplot::ggdraw()+cowplot::draw_image("Figures/Schemes/LinearBeaconed.svg")) -->
+
 <!-- nonbeaconed <- wrap_elements(cowplot::ggdraw()+cowplot::draw_image("Figures/Schemes/LinearNonBeaconed.svg")) -->
+
 <!-- beaconed / nonbeaconed &  -->
+
 <!--   plot_annotation(tag_levels = "A") & -->
+
 <!--   theme(plot.tag = element_text(size=24)) -->
+
 <!-- ``` -->
 
-<!-- The virtual reality (VR) task entailed a linear track which was 200 cm long and had a reward zone at 120 cm to 140 cm (Figure \@ref(fig:LinearTrackScheme)). The animal firstly, had to reach the reward zone and spent a fixed amount of time (3 s) until a water reward was delivered via a pump. Subsequently, the animal had to reach the end of the track where it was then teleported back to the start. After a waiting period of 5 s a new trial began. Animals were trained for 3 weeks with increasing time duration until they were able to run and perform a distance estimation task. For the recording session animals were surgically prepared as described in \@ref(immobile) and placed on the treadmill to perform the task. Light stimulation was used for a whole trial after a minimum of 5 trials. At the end of the trial light was switched back off and the animal continued with the trials. This alternating procedure was repeated for the whole recording session in order to gather multiple trials during stimulation. During training sessions four beaconed trials (Figure \@ref(fig:LinearTrackScheme)A) were followed by an non-beaconed trial (Figure \@ref(fig:LinearTrackScheme)B) which had no distinguishable reward zone. For Recording sessions the frequency was increased to 2 beaconed trials followed by a non-beaconed trial. -->
+<!-- The virtual reality (VR) task entailed a linear track which was 200 cm long and had a reward zone at 120 cm to 140 cm (Figure @ref(fig:LinearTrackScheme)). The animal firstly, had to reach the reward zone and spent a fixed amount of time (3 s) until a water reward was delivered via a pump. Subsequently, the animal had to reach the end of the track where it was then teleported back to the start. After a waiting period of 5 s a new trial began. Animals were trained for 3 weeks with increasing time duration until they were able to run and perform a distance estimation task. For the recording session animals were surgically prepared as described in @ref(immobile) and placed on the treadmill to perform the task. Light stimulation was used for a whole trial after a minimum of 5 trials. At the end of the trial light was switched back off and the animal continued with the trials. This alternating procedure was repeated for the whole recording session in order to gather multiple trials during stimulation. During training sessions four beaconed trials (Figure @ref(fig:LinearTrackScheme)A) were followed by an non-beaconed trial (Figure @ref(fig:LinearTrackScheme)B) which had no distinguishable reward zone. For Recording sessions the frequency was increased to 2 beaconed trials followed by a non-beaconed trial. -->
 
 ## Histological processing and immunohistochemistry
-Animals from *in-vivo* recordings were perfused after the final recording session. Each mouse was deeply anaesthetised using urethane ($2.5\ \frac{g}{kg} \textstyle$ body weight) and transcardially perfused with phosphate-buffered saline (PBS) followed by $4\%$ PFA. The fixed brain was removed and stored in $4\%$ PFA at $4^{\circ}C$ overnight. After post-fixation, brains were washed in PBS before they were dissected into two hemispheres and a forebrain part. The three parts were blocked onto a vibrating blade microtome (Leica VT1000S, Leica Biosystems, Wetzlar, Germany) and sliced into $75\ \mu m$ thick sagittal (hemispheres containing the PaS) and coronal (forebrain containing the MS) sections. $400\ \mu m$ sections from *in-vitro* recordings were fixed in in $4\%$ PFA at $4^{\circ}C$ overnight and then transferred to PBS. All slices were washed $3$ times ($10\ min$ each) and subsequently incubated for $3$ hours at room temperature in a blocking solution containing $5\%$ goat serum (NGS, Biozol, Germany), $0.1\%$ Triton-X (Sigma-Aldrich, USA) and PBS. Up to $3$ primary antibodies were diluted in $2.5\%$ NGS and incubated with the slices for $48\ h$ at $4^{\circ}C$. The Primary antibodies used in this study were Anti-NeuN (1:1000, ABN90P, Sigma-Aldrich, St. Louis, MO, United States, Sigma-Aldrich, St. Louis, Missouri, United States), Anti-Reelin (1:1000, MAB5364, Millipore, Burlington, MA, USA), Anti-WFS1 (1:1000, 11558-1-AP, Proteintech Group, Inc, Rosemont, IL, USA), Anti-GFP (1:1000, Chicken, Abcam,  Cambridge, UK) and Anti-Parvalbumin (1:1000, PV235, Swant, Burgdorf, Switzerland). Following incubation, slices were washed $3$ times in PBS ($10\ min$ each) before adding secondary antibodies (in PBS). The secondary antibodies used were goat anti-rabbit AlexaFluor-405, goat anti-rabbit AlexaFluor-647, goat anti-mouse AlexaFluor-555 or goat anti-guinea pig AlexaFluor-555, and goat anti-chicken AlexaFluor-488 (Invitrogen, Waltham, MA, USA). After $3$ hours of incubation at room temperature, slices were washed $3$ times in PBS ($10\ min$ each) and mounted on glass using VECTASHIELD® (Vector Laboratories, Burligame, CA, USA).
-Stained slices were imaged using a Leica TCS SP5 confocal microscope (Leica Biosystems, Wetzlar,
-Germany) and a fluorescence microscope (DM3000, Leica Biosystems, Wetzlar, Germany) for images requiring smaller magnification.
+
+Animals from *in-vivo* recordings were perfused after the final recording session. Each mouse was deeply anaesthetised using urethane ($2.5\ \frac{g}{kg} \textstyle$ body weight) and transcardially perfused with phosphate-buffered saline (PBS) followed by $4\%$ PFA. The fixed brain was removed and stored in $4\%$ PFA at $4\ ^{\circ}C$ overnight. After post-fixation, brains were washed in PBS before they were dissected into two hemispheres and a forebrain part. The three parts were blocked onto a vibrating blade microtome (Leica VT1000S, Leica Biosystems, Wetzlar, Germany) and sliced into $75\ \mu m$ thick sagittal (hemispheres containing the PaS) and coronal (forebrain containing the MS) sections. $400\ \mu m$ sections from *in-vitro* recordings were fixed in $4\%$ PFA at $4\ ^{\circ}C$ overnight and then transferred to PBS. All slices were washed $3$ times ($10\ min$ each) and subsequently incubated for $3$ hours at room temperature in a blocking solution containing $5\%$ goat serum (NGS, Biozol, Germany), $0.1\%$ Triton-X (Sigma-Aldrich, USA) and PBS. Up to $3$ primary antibodies were diluted in $2.5\%$ NGS and incubated with the slices for $48\ h$ at $4\ ^{\circ}C$. The Primary antibodies used in this study were Anti-NeuN (1:1000, ABN90P, Sigma-Aldrich, St. Louis, MO, United States, Sigma-Aldrich, St. Louis, Missouri, United States), Anti-Reelin (1:1000, MAB5364, Millipore, Burlington, MA, USA), Anti-WFS1 (1:1000, 11558-1-AP, Proteintech Group, Inc, Rosemont, IL, USA), Anti-GFP (1:1000, Chicken, Abcam, Cambridge, UK) and Anti-Parvalbumin (1:1000, PV235, Swant, Burgdorf, Switzerland). Following incubation, slices were washed $3$ times in PBS ($10\ min$ each) before adding secondary antibodies (in PBS). The secondary antibodies used were goat anti-rabbit AlexaFluor-405, goat anti-rabbit AlexaFluor-647, goat anti-mouse AlexaFluor-555 or goat anti-guinea pig AlexaFluor-555, and goat anti-chicken AlexaFluor-488 (Invitrogen, Waltham, MA, USA). After $3$ hours of incubation at room temperature, slices were washed $3$ times in PBS ($10\ min$ each) and mounted on glass using VECTASHIELD® (Vector Laboratories, Burligame, CA, USA). Stained slices were imaged using a Leica TCS SP5 confocal microscope (Leica Biosystems, Wetzlar, Germany) and a fluorescence microscope (DM3000, Leica Biosystems, Wetzlar, Germany) for images requiring smaller magnification.
 
 ## Acquisition and stimulation
-Signals for *in-vivo* recordings were acquired with a sampling frequency of $20\ kHz$ and digitised using RHD2132 amplifiers and a RHD2000 system (Intan Technologies, Los Angeles, CA, USA). The light stimulation was performed using an LED (wavelength: $473\ nm$, Plexon Inc., TX, USA) with Spike2 coupled to a Power1401-3A data acquisition interface (Cambridge Electronic Design Limited, Cambridge, UK). Custom scripts were used to drive pulse stimulations for $5\ s$ at different frequencies ($1\ Hz$, $2\ Hz$, $4\ Hz$, $8\ Hz$, $16\ Hz$, $32\ Hz$). $1\ Hz$ ($2\ ms$ pulse length) stimulation was used to identify channelrhodopsin expressing cells in the MS, whereas higher frequencies were used to drive network activity in the MS and the PaS. For pulse stimulations between $2$ and $8\ Hz$, nested pulse bursts ($5$ times $5\ ms$ long single pulse in $16.6\ ms$ intervals) were used to imitate theta burst activity. Pulse frequencies at $16$ and $32\ Hz$ were achieved through sequences of single $10\ ms$ long pulses.
+
+Signals for *in-vivo* recordings were acquired with a sampling frequency of $20\ kHz$ and digitised using RHD2132 amplifiers and a RHD2000 system (Intan Technologies, Los Angeles, CA, USA). The light stimulation was performed using an LED (wavelength: $473\ nm$, Plexon Inc., TX, USA) with Spike2 coupled to a Power1401-3A data acquisition interface (Cambridge Electronic Design Limited, Cambridge, UK). Custom scripts were used to drive pulse stimulations for $5\ s$ at different frequencies ($1\ Hz$, $2\ Hz$, $4\ Hz$, $8\ Hz$, $16\ Hz$, $32\ Hz$). $1\ Hz$ ($2\ ms$ pulse length) stimulation was used to identify channelrhodopsin expressing cells in the MS, whereas higher frequencies were used to drive network activity in the MS and the PaS. For pulse stimulations between $2$ and $8\ Hz$, nested pulse bursts ($5$ times $5\ ms$ long single pulse in $16.6\ ms$ intervals) were used to imitate $\theta$ burst activity. Pulse frequencies at $16$ and $32\ Hz$ were achieved through sequences of single $10\ ms$ long pulses.
 
 ## *In-vivo* data analysis
-For LFP analysis, data was filtered with a finite impulse response (FIR) low-pass filter ($500\ Hz$) and then downsampled to $1000\ Hz$. Stimulation blocks were extracted as $15\ s$ segments including $5\ s$ before onset of stimulation and $5\ s$ after the stimulation was finished. 
-Filtering and decompositions were performed in `R version 4.0.3` [@R-base] using a custom package (https://github.com/danielparthier/InVivoR). FIR filters were designed using the `signal` package [@signal_developers_signal_2014] and applied -- via convolution -- forward and backwards to the zero-padded signal. 
+
+For LFP analysis, data was filtered with a finite impulse response (FIR) low-pass filter ($500\ Hz$) and then downsampled to $1000\ Hz$. Stimulation blocks were extracted as $15\ s$ segments including $5\ s$ before onset of stimulation and $5\ s$ after the stimulation was finished. Filtering and decompositions were performed in `R version 4.0.3` [@R-base] using a custom package (<https://github.com/danielparthier/InVivoR>). FIR filters were designed using the `signal` package [@signal_developers_signal_2014] and applied -- via convolution -- forward and backwards to the zero-padded signal.
 
 \begin{align}
 \omega &= \frac{2\pi f}{f_{s}} \label{eq:angular} \\
@@ -96,44 +114,45 @@ a &= \omega \frac {4\pi}{\sigma+\sqrt{2+\sigma^{2}}} \label{eq:scale} \\
 \psi_{a,b}(t) &= \frac{1}{\sqrt{a}}(\frac{t-b}{a}) \label{eq:Wavelet} \\
 W(a,b) &= \int_{-\infty}^{\infty} x(t)\psi_{a,b}^*(t)dt \label{eq:WT}
 \end{align}
+
 \noindent
-Extracted segments were analysed in the time-frequency domain using wavelet decomposition at 320 different scales ($a$ as shown in \@ref(eq:scale) with $f$ $0.25-80\ Hz$ as angular frequency $\omega$ \@ref(eq:angular)). The morlet daughter wavelets were then constructed given the scales \@ref(eq:Wavelet) with a $\sigma$ of $6$ and then convolved with the extracted time series segments \@ref(eq:WT).
-Units were automatically detected with Kilosort [@pachitariu_fast_2016] and manually curated using Phy [@rossant_spike_2016] and Klusters [@hazan_klusters_2006]. Spike autocorrelograms were computed by taking the difference between spike times for any given spike in a window of $1\ s$. Then units were checked for a clean refractory period to exclude multi-unit activity.
-To extract the $\theta$ or $\delta$ phase and power from the LFP at the time point of a spike, the downsampled LFP was filtered using a band-pass FIR filter ($\theta:\ 4-12\ Hz$, $\delta:\ 1-4\ Hz$). The Hilbert transform was applied to the filtered signal and the phase and power at spike time points extracted.
-For the phase analysis of spikes, only spikes with a $\theta$-$\delta$ power ratio of more than $2$ were considered.
+Extracted segments were analysed in the time-frequency domain using wavelet decomposition at 320 different scales ($a$ as shown in \@ref(eq:scale) with $f$ $0.25-80\ Hz$ as angular frequency $\omega$ \@ref(eq:angular)). The morlet daughter wavelets were then constructed given the scales \@ref(eq:Wavelet) with a $\sigma$ of $6$ and then convolved with the extracted time series segments \@ref(eq:WT). Units were automatically detected with Kilosort [@pachitariu_fast_2016] and manually curated using Phy [@rossant_spike_2016] and Klusters [@hazan_klusters_2006]. Spike autocorrelograms were computed by taking the difference between spike times for any given spike in a window of $1\ s$. Then units were checked for a clean refractory period to exclude multi-unit activity. To extract the $\theta$ or $\delta$ phase and power from the LFP at the time point of a spike, the downsampled LFP was filtered using a band-pass FIR filter ($\theta:\ 4-12\ Hz$, $\delta:\ 1-4\ Hz$). The Hilbert transform was applied to the filtered signal and the phase and power at spike time points extracted. For the phase analysis of spikes, only spikes with a $\theta$-$\delta$ power ratio of more than $2$ were considered.
 
 <!-- $W_{\psi}(a,b)=\frac{1}{\sqrt{a}} \int_{-\infty}^{\infty}\overline{\psi(\frac{t-b}{a})}x(t)dt$ -->
+
 <!-- place holder for formulas and additional information -->
 
 <!-- $\psi_{a,b}(t)=\frac{1}{\sqrt{a}}(\frac{t-b}{a})$ -->
-
 
 <!-- $W_{\psi}(a,b)= \int_{-\infty}^{\infty}dxf(x)\psi_{(a,b)}^*(x)$ -->
 
 <!-- $\psi_$ -->
 
 <!-- $W_{\psi}(a,b)=\frac{1}{\sqrt{a}} \int_{-\infty}^{\infty}\overline{\psi(\frac{t-b}{a})}x(t)dt$ -->
+
 <!-- $W_x(a,b)=\sqrt{a} \int_{-\infty}^{\infty} \hat{x}(f)\hat{\psi}*(af)e^{j2\pi fb}df¸$ -->
 
-
 <!-- $\kappa = e^{-\frac{1}{2}\sigma^2}$ -->
+
 <!-- $c_{\sigma}=\left(1+e^{-\sigma^2}-2e^{-\frac{3}{4}\sigma^2} \right)^{-\frac{1}{2}}$ -->
+
 <!-- $\hat{\psi}_{\sigma}(a\omega) = c_{\sigma}\pi^{-\frac{1}{4}} \left(e^{-\frac{1}{2}(\sigma-a\omega)^2}-k_{\sigma}e^{-\frac{1}{2}a\omega^2}\right)$ -->
 
 <!-- $W(a,b) = F^{-1}\{a2\pi^{-\frac{1}{2}}\hat{f}(\omega)*\hat{\psi}^*_{\sigma}(a\omega)\}$ -->
 
-
 <!-- $\psi_{a,b}(t)=\frac{1}{\sqrt{a}}(\frac{t-b}{a})$ -->
+
 <!-- $W(a,b)=\int_{-\infty}^{\infty} \hat{x}(\omega)\hat{\psi}_{a,b}^*(\omega)d\omega$ -->
 
-
 ## Statistical analysis
-For comparison of groups, Bayesian hierarchical models were used to estimate the posterior distributions of parameters such as the mean, standard deviation and median. In the following section describing parameter estimation, the $\theta$ symbol will be used as any "parameter". 
+
+For comparison of groups, Bayesian hierarchical models were used to estimate the posterior distributions of parameters such as the mean, standard deviation and median. In the following section describing parameter estimation, the $\theta$ symbol will be used as any "parameter".
 
 \begin{align}
 P(\theta|y) &= \dfrac{P(y|\theta)P(\theta)}{P(y)}
 (\#eq:BayesTheorem)
 \end{align}
+
 \noindent
 The posterior probability ($P(\theta|y)$) represents the conditional probability of a parameter ($\theta$) given the observed data ($y$) and the model specifications. The theorem \@ref(eq:BayesTheorem) incorporates the prior knowledge -- $P(\theta)$ --, the likelihood function representing the probability of the data given the parameter -- $P(y|\theta)$ -- and the marginal likelihood -- $P(y)$ -- as the probability of the data under the prior belief.
 
@@ -141,6 +160,7 @@ The posterior probability ($P(\theta|y)$) represents the conditional probability
 P(\theta|y) &\propto P(\theta)P(y|\theta)
 (\#eq:BayesSimple)
 \end{align}
+
 \noindent
 This can be simplified by dropping $P(y)$ -- as shown in \@ref(eq:BayesSimple) -- where the posterior distribution is proportional to the product of the prior and likelihood. Every parameter in a model will be estimated by this approach using the Hamiltonian Monte Carlo method implemented in `Stan` [@carpenter_stan_2015]. To account for possible interactions between coefficients, they were estimated via a covariance matrix ($\Sigma$) implemented as Cholesky factorisation $\Sigma=LL^{T}$ where $L$ is the positive definite lower triangular matrix.
 
@@ -151,27 +171,29 @@ Odds_{p} &= \frac{p}{1-p} \label{eq:Odds} \\
 LOR_{p_{1},p_{2}} &= \log \frac{Odds_{p_{1}}}{Odds_{p_{1}}} \label{eq:logOddsRatio} \\
 ROPE &= \pi/\sqrt{3} \cdot 0.1 \label{eq:ROPE}
 \end{align}
+
 \noindent
-For all of the estimated parameters, $95\%$ of the highest density intervals (HDI) were computed as credible intervals and compared to zero or, in case of the log odds ratio (LOR)  \@ref(eq:logOddsRatio), to the region of practical equivalence (ROPE -- @kruschke_doing_2015) \@ref(eq:ROPE). In this study, I used HDI to compare groups and estimate differences between groups. Plots with population values show the median outcome with credible intervals (HDIs) covering $80\%$, $90\%$ and $95\%$ of the data. In the text, the median with $95\%$ HDI is reported. All models were assessed for stability and validity with leave-one-out cross-validation using Pareto-smoothed importance sampling [@gabry_visualization_2019; @vehtari_practical_2017].
+For all of the estimated parameters, $95\%$ of the highest density intervals (HDI) were computed as credible intervals and compared to zero or, in case of the log odds ratio (LOR) \@ref(eq:logOddsRatio), to the region of practical equivalence (ROPE -- @kruschke_doing_2015) \@ref(eq:ROPE). In this study, I used HDI to compare groups and estimate differences between groups. Plots with population values show the median outcome with credible intervals (HDIs) covering $80\%$, $90\%$ and $95\%$ of the data. In the text, the median with $95\%$ HDI is reported. All models were assessed for stability and validity with leave-one-out cross-validation using Pareto-smoothed importance sampling [@gabry_visualization_2019; @vehtari_practical_2017].
 
+I estimated the parameters of measurements using Bayesian hierarchical models [@gelman_multilevel_2006] to account for nested structures which generally occur in such an experimental design. It is crucial to account for variability between subjects or recording sites to avoid inflating type I errors i.e. false positives [@aarts_solution_2014]. Two extreme situations can usually occur: *complete pooling* where, for example, all measurements are considered coming from one source -- even though that might not be the case -- and *no pooling* which assumes that every subject generates its own measurement and is completely isolated from other subjects [@gelman_multilevel_2006]. However, this is hardly true for most experiments since cells which are recorded in one region might show correlated properties given that the expression of ChR2 can differ, measurements from one animal might be different to measurements from another animal. Hence, dependencies can be considered and accounted for and *partial pooling* can be used where all lower levels originate from an upper level. Such a model leads to estimates being closer to the *pooled* model compared to the *no pooling* approach, but improves predictions for subject levels [@katahira_how_2016]. This weighting to an overall estimate is referred to as *shrinkage*.
 
-I estimated the parameters of measurements using Bayesian hierarchical models [@gelman_multilevel_2006] to account for nested structures which generally occur in such an experimental design. It is crucial to account for variability between subjects or recording sites to avoid inflating type I errors i.e. false positives [@aarts_solution_2014]. Two extreme situations can usually occur: *complete pooling* where, for example, all measurements are considered coming from one source -- even though that might not be the case -- and *no pooling* which assumes that every subject generates its own measurement and is completely isolated from other subjects [@gelman_multilevel_2006]. However, this is hardly true for most experiments since cells which are recorded in one region might show correlated properties given that the expression of ChR2 can differ, measurements from one animal might be different to measurements from another animal. Hence, dependencies can be considered and accounted for and *partial pooling* can be used where all lower levels originate from an upper level. Such a model leads to estimates being closer to the *pooled* model compared to the *no pooling* approach, but improves predictions for subject levels [@katahira_how_2016]. This weighting to an overall estimate is referred to as *shrinkage*. 
+In our *in-vivo* case, power measurements from the lowest level (single trial) will inform power estimates for the next level (session). This will in turn contribute to estimates for the animal and inform in the end estimates of our population parameter representing the measurement of interest -- power. The "Bayesian" advantage is that prior information can be included to exclude impossible outcomes. Since we know that an amplifier will limit our maximum measurements and that previous recordings inform our knowledge of what magnitude to expect, we can incorporate such information to increase accuracy of estimates. Finally, estimates will be reported as a whole distribution allowing for quantification of uncertainty. For further review see [@van_de_schoot_bayesian_2021].
 
-In our *in-vivo* case, power measurements from the lowest level (single trial) will inform power estimates for the next level (session). This will in turn contribute to  estimates for the animal and inform in the end estimate our population parameter representing the measurement of interest -- power. The "Bayesian" advantage is that prior information can be included to exclude impossible outcomes. Since we know that an amplifier will limit our maximum measurements and that previous recordings inform our knowledge of what magnitude to expect, we can incorporate such information to increase accuracy of estimates. Finally, estimates will be reported as a whole distribution allowing for quantification of uncertainty. For further review see [@van_de_schoot_bayesian_2021].
-
-In the case of the present study, estimates should be understood as a summary and description of the outcomes rather than a binary decision between *"significant"* and *"not significant"*. Quantified uncertainty allows the reader to decide for themselves whether a reported effect is relevant. Therefore, I have decided to report absolute differences, ratios or log odds ratios with the associated uncertainty/certainty given the data. For most readers, this might take time to get used to, but it can be easier to interpret and less abstract, thus allowing the reader to see the data properly. 
+In the case of the present study, estimates should be understood as a summary and description of the outcomes rather than a binary decision between *"significant"* and *"not significant"*. Quantified uncertainty allows the reader to decide for themselves whether a reported effect is relevant. Therefore, I have decided to report absolute differences, ratios or log odds ratios with the associated uncertainty/certainty given the data. For most readers, this might take time to get used to, but it can be easier to interpret and less abstract, thus allowing the reader to see the data properly.
 
 <!-- This weighting to an overall estimate is referred to as *shrinkage*. In our *in-vivo* case power measurements from the lowest level (single trial) will inform a power estimates for the next level (session). This will in return contribute to  estimates for the animal and inform in the end estimate our population parameter representing the measurement of interest -- power. The "Bayesian" advantage is that prior information can be included to exclude impossible outcomes. Since we know that an amplifier will limit our maximum measurements and previous recordings inform our knowledge to what magnitude to expect we can incorporate such information to increase accuracy of estimates. Finally, estimates will be reported as a whole distribution allowing for quantification of uncertainty. For further review see [@van_de_schoot_bayesian_2021]. -->
 
 <!-- In the case of the present study estimates should be understood as a summary and description of the outcomes rather than a binary decision between *"significant"* and *"not significant"*. Quantified uncertainty allows the reader to decide for themselves whether a reported effect is relevant. Therefore, I decided to report absolute differences, ratios or log odds ratios with the associated uncertainty/certainty given the data. For most readers this might take time to get used to but can be easier to interpret and less abstract allowing the reader to see the data properly.  -->
 
 ### Cell property analysis
+
 For cell properties, linear models were constructed by estimating the distribution parameters (the mean $\mu$, standard deviation $\sigma$, shape $\alpha$, rate $\beta$ etc.) with appropriate link functions.
 
 \begin{equation}
 \nu_{k} = \beta_{k} + \beta_{k,s} + \beta_{k,ct} + \beta_{k,a} + \beta_{k,m}
 (\#eq:nu)
 \end{equation}
+
 \noindent
 The linear predictor -- $\nu$ -- can be calculated for a given parameter as the sum of $\beta_{k}$ -- the parameter before applying the link function -- and the corresponding coefficients where $s$ refers to the experimental setup, $ct$ the cell type, $a$ the animal and $m$ the mouse line.
 
@@ -180,6 +202,7 @@ The linear predictor -- $\nu$ -- can be calculated for a given parameter as the 
 Normal&(\mu_{k},\sigma_{k})
 (\#eq:identityLink)
 \end{align}
+
 \noindent
 For models using the normal distribution -- $Normal(\mu,\sigma)$ -- the identity link was used \@ref(eq:identityLink). The normal error distribution was used for $V_{m}$, $AP-heigth$, $threshold$, $AHP$ and the $mAHP$.
 
@@ -191,6 +214,7 @@ Gamma&(\alpha_{k},\beta_{k}) \nonumber \\
 \sigma &= \sqrt{\frac {\alpha }{\beta ^{2}}}
 (\#eq:GammaDistribution)
 \end{align}
+
 \noindent
 Models with positive continuous outcomes were implemented as gamma distribution -- $Gamma(\alpha,\beta)$ -- using a log link function \@ref(eq:GammaDistribution), where $\alpha$ represents the shape parameter and $\beta$ the rate. This distribution was used to estimate the $positive$, and the $negative$ -- $-Gamma(\alpha_{neg.Slope},\beta_{neg.Slope})$ -- $slope$, the $latency$, $FWHM$, $R_{in}$, $rheobase$, $gain$, $C_{m}$ and the $slope$ $ratio$.
 
@@ -199,6 +223,7 @@ Models with positive continuous outcomes were implemented as gamma distribution 
 LogNormal & (\mu_{k},\sigma_{k})
 (\#eq:LognormalLink)
 \end{align}
+
 \noindent
 For models implemented as log-normal distribution -- $Lognormal(\mu,\sigma)$ -- an identity link function was used \@ref(eq:LognormalLink). Note that in a log-normal implementation, the mean of the distribution is calculated as $e^{\mu+\frac{\sigma^2}{2}}$, the median as $e^\mu$ and the standard deviation as $e^{\mu+\frac{1}{2}\sigma^2}\sqrt{e^{\sigma^2}-1}$. This distribution was applied to $ISIs$ and the spike $adaptation$ ($\mu_{adaptation}=\mu_{ISI_{9/10}}-\mu_{ISI_{1/2}}$ where $\mu$ is on the log scale).
 
@@ -209,6 +234,7 @@ logit(\mu_{k}) &= \nu_{k} \nonumber \\
 Beta&(\alpha_{k},\beta_{k})
 (\#eq:BetaLink)
 \end{align}
+
 \noindent
 The $sag\ ratio$ was implemented as beta distribution -- $beta(\alpha,\beta)$ -- using a logit link function \@ref(eq:BetaLink).
 
@@ -217,35 +243,39 @@ The $sag\ ratio$ was implemented as beta distribution -- $beta(\alpha,\beta)$ --
 NegBinomial&(\mu_{k},\phi_{k}) \nonumber \\
 \sigma &= \sqrt{\mu + \frac{\mu^2}{\phi}}
 (\#eq:NegBinomialLink)
-\end{align}
+\end{align} 
+
 \noindent
 As previously mentioned, the $firing\ frequency$ was estimated by directly estimating the action potential count in a $1\ s$ window. A modified negative binomial -- $NegBinomial(\mu,\phi)$ -- with a log link \@ref(eq:NegBinomialLink) was used, which is parameterised so that the mean is $\mu$ and the standard deviation as shown in \@ref(eq:NegBinomialLink).
 
 All dispersion parameters -- such as $\sigma$, $\phi$, or the shape parameter $\alpha$ in the gamma distribution -- were estimated using a log link so that $ln{\sigma} = \nu_{disp}$, $ln{\phi} = \nu_{disp}$ or $ln{\alpha} = \nu_{disp}$. The exception is the log normal distribution where $\sigma$ is required to be on the log-scale and therefore requires the use of an identity link without transformation.
 
 ### Connectivity analysis
+
 For connectivity, the probability of connections was estimated with a beta distribution as shown in \@ref(eq:BetaLink) with $\nu_{connection} = X\beta_{0}+X\beta_{s}+X\beta_{a}+X\beta_{m}$ where $X$ represents the cell type model matrix.
 
-### *In-Vivo* power density
-I estimated the power density over different stimulation frequencies by taking the wavelet transform $\left|W(a,b)\right|$, applying a frequency correction ($\left|W(a,b)\right|_{f}\cdot f$) and computing the density for any given time point of the transform.  The average density for each block (pre-stimulation, stimulation, post-stimulation) was then calculated at the stimulation frequency.
-\begin{equation}
+### *In-vivo* power density
+
+I estimated the power density over different stimulation frequencies by taking the wavelet transform $\left|W(a,b)\right|$, applying a frequency correction ($\left|W(a,b)\right|_{f}\cdot f$) and computing the density for any given time point of the transform. The average density for each block (pre-stimulation, stimulation, post-stimulation) was then calculated at the stimulation frequency. \begin{equation}
 \ln{\mu_{Power Density}} = \beta_{max}-\beta_{max} e^{(-\beta_{Slope} StimulationFrequency)}
 (\#eq:AsymPower)
 \end{equation}
+
 \noindent
 Using an asymptotic regression with $\beta_{max}$ as maximum ceiling for $\nu$ and a floor of $0$. The dependency of stimulation frequency was incorporated as $\beta_{slope}$. As explained in \@ref(eq:nu), $\beta$ parameters were estimated as a hierarchical structure with $animal$ (with nested $session$ and $trial$), $\theta$ $burst$ $stimulation$,$recording$ $site$ and the $stimulation$ $site$ as levels.
 
-### *In-Vivo* phase lock
-To estimate entrainment, $\rho$ was estimated for every time point and frequency of the wavelet transform.
-\begin{align}
+### *In-vivo* phase lock
+
+To estimate entrainment, $\rho$ was estimated for every time point and frequency of the wavelet transform. \begin{align}
 \theta(f,t) &= atan2(\Im(W(a,b)), \Re(W(a,b))) \label{eq:phaseInvivo} \\
 \rho_{f,t} &=\sqrt{\left(\frac{1}{trial_{N}} \sum_{n=1}^{trial_{N}} sin \theta(f,t)\right)^2 + \left(\frac{1}{trial_{N}} \sum_{n=1}^{trial_{N}} cos \theta(f,t)\right)^2 } \label{eq:rhoInVivo}
 \end{align}
+
 \noindent
-The imaginary parts and real parts of the wavelet transform were extracted to calculate the phase at any given point \@ref(eq:phaseInvivo) to subsequently calculate  $\rho$ as the strength of phase lock over all trials in a session \@ref(eq:rhoInVivo). For further analysis, the log odds ratio between $\rho$ and $\rho_{random}=\frac{1}{\sqrt{trial_{N}}}$ was used.
-\begin{equation}
+The imaginary parts and real parts of the wavelet transform were extracted to calculate the phase at any given point \@ref(eq:phaseInvivo) to subsequently calculate $\rho$ as the strength of phase lock over all trials in a session \@ref(eq:rhoInVivo). For further analysis, the log odds ratio between $\rho$ and $\rho_{random}=\frac{1}{\sqrt{trial_{N}}}$ was used. \begin{equation}
 \mu_{LOR} = \beta_{max}-({\beta_{max}-\beta_{min}}) e^{(-\beta_{Slope} StimulationFrequency)}
 (\#eq:AsymLogOdds)
 \end{equation}
+
 \noindent
 Similarly to the previous asymptotic regression for the power density, LOR was estimated as described in \@ref(eq:AsymLogOdds) where, in addition to the maximum and the slope, a minimum was estimated ($\beta_{min}$). The LOR could then be compared to the ROPE.

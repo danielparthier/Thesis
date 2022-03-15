@@ -16,7 +16,7 @@
 
 \backmatter
 # Appendix {- #appendix}
-## Additional Tables {-}
+## Additional tables {-}
 ```{r CellParTable,tidy=FALSE, echo=FALSE, warning=F}
 ParameterTable <- readRDS(file = "Data/ParameterTable.rds")
 #ParameterTable[,Parameter:=gsub(x = Parameter, pattern = "Ω", "$\\\\Omega$"),]#ParameterTable[Parameter%in%c("AHP (mV)", "AP-Height (mV)", "Cm (pF)", "Firing Frequency (Hz)", "Rheobase (pA)", "Rin (MOhm)", "Threshold (mV)", "Vm (mV)"), `:=`(`2.5%`=round(`2.5%`, digits = 1), `50%`=round(`50%`, digits = 1), `97.5%`=round(`97.5%`, digits = 1)),]
@@ -61,8 +61,8 @@ add_header_above(c(" " = 2, "HDI" = 3, "  " = 1)) %>%
 
 
 ```{r abbreviationTable, tidy=FALSE, echo=FALSE, warning=F}
-AbbTable <- data.table(Abbrevation=c("ACSF", "sACSF", "PV", "ChAT", "TTX", "4-AP", "PaS", "PrS", "MEC", "MS", "IPSC", "IPSP", "EPSC", "EPSP", "PBS", "PFA", "VR", "LFP", "NBQX", "DHbetaE","MLA", "NMDA", "AMPA", "ACh", "GABA", "ChR2", "STDP", "CCK", "HCN", "LRN", "DG", "CB", "LEC", "AP", "AHP", "Vm", "Cm", "FWHM", "ISI", "FIR", "HDI", "VGAT", "FS", "DS", "IN", "WFS1", "Rin", "YFP", "ROPE", "LOR", "SAP"),
-                       Meaning=c("Artificial Cerebral Spinal Fluid", "Sucrose Artificial Cerebral Spinal Fluid", "Parvalbumin", "Choline Acetyltransferase", "Tetrodotoxin", "4-Aminopyridine", "Parasubiculum", "Presubiculum", "Medial Entorhinal Cortex", "Medial Septum","Inhibitory Postsynaptic Current", "Inhibitory Postsynaptic Potential", "Excitatory Postsynaptic Current", "Excitatory Postsynaptic Potential", "Phosphate-Buffered Saline", "Paraformaldehyde", "Virtual Reality", "Local Field Potential", "2,3-Dioxo-6-nitro-1,2,3,4-tetrahydrobenzo[f]quinoxaline-7-sulfonamide", "Dihydro-beta-erythroidine hydrobromide", "Methyllycaconitine citrate", "N-Methyl-D-aspartic acid", "alpha-amino-3-hydroxy-5-methyl-4-isoxazolepropionic acid", "Acetylcholine", "gamma-aminobutyric acid", "Channelrhodopsin-2", "Spike time Dependent  Plasticity", "Cholecystokinin", "Hyperpolarisation-Activated Cyclic Nucleotide-Gated Non-Selective Cation Channel", "Low-Rhythmic Firing Neurons", "Dentage Gyrus", "Calbindin", "Lateral Entorhinal Cortex", "Action Potential", "Afterhyperpolarisation", "Resting Membrane Potential", "Membrane Capacitance", "Full Width Half Maximum", "Inter-Spike-Interval", "Finite Impulse Response", "Highest Density Interval", "Vesicular Inhibitory Amino Acid Transporter", "Fast Spiking", "Delayed Spiking", "Interneuron", "Wolframin ER Transmembrane Glycoprotein", "Input Resistance", "Yellow Fluorescent Protein", "Region Of Practical Equivalence", "Log Odds Ratio",  "IgG192-Saporin"))
+AbbTable <- data.table(Abbrevation=c("ACSF", "sACSF", "PV", "ChAT", "TTX", "4-AP", "PaS", "PrS", "MEC", "MS", "IPSC", "IPSP", "EPSC", "EPSP", "PBS", "PFA", "VR", "LFP", "NBQX", "DH$\\beta$E","MLA", "NMDA", "AMPA", "ACh", "GABA", "ChR2", "STDP", "CCK", "HCN", "LRN", "DG", "CB", "LEC", "AP", "AHP", "V\\textsubscript{m}", "C\\textsubscript{m}", "FWHM", "ISI", "FIR", "HDI", "VGAT", "FS", "DS", "IN", "WFS1", "R\\textsubscript{in}", "YFP", "ROPE", "LOR", "SAP"),
+                       Meaning=c("Artificial Cerebral Spinal Fluid", "Sucrose Artificial Cerebral Spinal Fluid", "Parvalbumin", "Choline Acetyltransferase", "Tetrodotoxin", "4-Aminopyridine", "Parasubiculum", "Presubiculum", "Medial Entorhinal Cortex", "Medial Septum","Inhibitory Postsynaptic Current", "Inhibitory Postsynaptic Potential", "Excitatory Postsynaptic Current", "Excitatory Postsynaptic Potential", "Phosphate-Buffered Saline", "Paraformaldehyde", "Virtual Reality", "Local Field Potential", "2,3-Dioxo-6-nitro-1,2,3,4-tetrahydrobenzo[f]quinoxaline-7-sulfonamide", "Dihydro-$\\beta$-erythroidine hydrobromide", "Methyllycaconitine citrate", "N-Methyl-D-aspartic acid", "$\\alpha$-amino-3-hydroxy-5-methyl-4-isoxazolepropionic acid", "Acetylcholine", "$\\gamma$-aminobutyric acid", "Channelrhodopsin-2", "Spike Time Dependent  Plasticity", "Cholecystokinin", "Hyperpolarisation-Activated Cyclic Nucleotide-Gated Non-Selective Cation Channel", "Low-Rhythmic Firing Neurons", "Dentage Gyrus", "Calbindin", "Lateral Entorhinal Cortex", "Action Potential", "Afterhyperpolarisation", "Resting Membrane Potential", "Membrane Capacitance", "Full Width Half Maximum", "Inter-Spike-Interval", "Finite Impulse Response", "Highest Density Interval", "Vesicular Inhibitory Amino Acid Transporter", "Fast Spiking", "Delayed Spiking", "Interneuron", "Wolframin ER Transmembrane Glycoprotein", "Input Resistance", "Yellow Fluorescent Protein", "Region Of Practical Equivalence", "Log Odds Ratio",  "IgG192-Saporin"))
 ### table over more than a page --> warning should be fixed
 setorder(x = AbbTable, "Abbrevation")
 knitr::kable(
@@ -72,13 +72,14 @@ knitr::kable(
   label = NA,
   longtable = TRUE,
   booktabs = TRUE,
-  format = "simple")
+  format = "simple",
+  escape = F)
 ```
 
 \listoffigures
 \pagebreak
-## Statement of Contributions {-}
-All experiments in this thesis were conceived and designed by my PhD supervisor Prof. Dr. Dietmar Schmitz and myself. All surgeries, *in-vivo* recordings and data analysis was performed by me.
+## Statement of contributions {-}
+All experiments in this thesis were conceived and designed by my PhD supervisor Prof. Dr. Dietmar Schmitz and myself. All surgeries, *in-vivo* recordings and data analysis were performed by me.
 \vspace{0.5cm}
 \hspace{0pt}
 
@@ -98,7 +99,7 @@ Detailed contributions of other people to the data presented in this work includ
 **Susanne Rieckmann** and **Anke Schönherr** organised breeding and performed genotyping of transgenic animals.
 
 \pagebreak
-## List of Publications {-}
+## List of publications {-}
 
 \hypertarget{Relatedtothisdissertation}{%
 \subsection*{Related to this dissertation}\label{Relatedtothisdissertation}}

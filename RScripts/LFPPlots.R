@@ -915,6 +915,8 @@ TraceExamplePlot <- ggplot(data = TraceTable, aes(x = Time, y = Amplitude))+
   geom_text(inherit.aes = F, data = ScaleBarTraceDT[1,], mapping = aes(x=TimeMin+1, y=AmplitudeMin, label=Label), vjust=1.4, size=3)+
   geom_text(inherit.aes = F, data = ScaleBarTraceDT[2,], mapping = aes(x=TimeMin, y=AmplitudeMin+100, label=Label), hjust=-0.2, size=3)+
   theme_void()
+saveRDS(object = TraceExamplePlot, file = "Data/TraceExamplePlot.rds")
+
 
 Single8HzTable <- data.table(reshape2::melt(Power[,,23]))
 setnames(Single8HzTable, old = c("Var1", "Var2", "value"), new = c("Time", "Frequency", "Power"))
@@ -931,6 +933,8 @@ Single8HzPowerPlot <- ggplot(data = Single8HzTable[Frequency<60,], aes(x = Time,
   geom_segment(inherit.aes = F, data = LightStimSingle8HzSegmentDT, mapping = aes(x=TimeMin, xend=TimeMax, y=FrequencyMin, yend=FrequencyMax), colour="deepskyblue2", size=2)+
   scale_fill_viridis_c(option = "B", limits=c(0,6), breaks=seq(0,6,2), begin = 0, guide = guide_colourbar(title = "Power\n(A.U.)", barwidth = grid::unit(x = 1, units = "lines")))+
   theme_classic() + theme(panel.spacing.x=unit(1, "lines"), axis.line = element_blank(), strip.background = element_blank(), strip.text.y = element_text(angle = 0), plot.title = element_text(hjust = 0.5)) 
+saveRDS(object = Single8HzPowerPlot, file = "Data/Single8HzPowerPlot.rds")
+
 
 Single8HzWTPSDPlot <- ggplot(data = Single8HzTable[Frequency<60,], aes(x = Time, y = Frequency, fill=WTPSD))+
   geom_raster()+
@@ -939,6 +943,7 @@ Single8HzWTPSDPlot <- ggplot(data = Single8HzTable[Frequency<60,], aes(x = Time,
   geom_segment(inherit.aes = F, data = LightStimSingle8HzSegmentDT, mapping = aes(x=TimeMin, xend=TimeMax, y=FrequencyMin, yend=FrequencyMax), colour="deepskyblue2", size=2)+
   scale_fill_viridis_c(option = "B", limits=c(0,25),begin = 0, guide = guide_colourbar(title = "Power\nDensity", barwidth = grid::unit(x = 1, units = "lines")))+
   theme_classic() + theme(panel.spacing.x=unit(1, "lines"), axis.line = element_blank(), strip.background = element_blank(), strip.text.y = element_text(angle = 0), plot.title = element_text(hjust = 0.5)) 
+saveRDS(object = Single8HzWTPSDPlot, file = "Data/Single8HzWTPSDPlot.rds")
 
 
 # DesignMatrix <- "
@@ -967,8 +972,8 @@ BEE
 
 WTSingleExampleOverviewPlot <- MSCoronalProbe + PaSSagittalProbe + TraceExamplePlot + Single8HzPowerPlot + Single8HzWTPSDPlot + plot_layout(design = DesignMatrix, widths = c(1,1,1)) + plot_annotation(tag_levels = "A")  &
   theme(plot.tag = element_text(size=16))
-saveRDS(object = WTSingleExampleOverviewPlot, file="/alzheimer/Daniel_Data/R/Thesis/Data/WTSingleExampleOverviewPlot.rds")
-ggsave(filename = "/alzheimer/Daniel_Data/R/Thesis/Data/WTSingleExampleOverviewPlot.pdf", plot = WTSingleExampleOverviewPlot, device = "pdf")
+saveRDS(object = WTSingleExampleOverviewPlot, file="Data/WTSingleExampleOverviewPlot.rds")
+ggsave(filename = "Data/WTSingleExampleOverviewPlot.pdf", plot = WTSingleExampleOverviewPlot, device = "pdf")
 
 
 StimMS_PaS <- readRDS(file = "/alzheimer/Daniel_Data/DSC008159/DSC008159_190619_150144/OutputFolder/StimMSrecPaS_StimERP.rds")
@@ -1960,7 +1965,8 @@ system.time(saveRDS(object = StimMSrecPaS_ERP, file = "fast.rds", compress = F))
 
 
 ##### !!!!! Spike analysis ####
-SpikeTableTotal <- readRDS("/alzheimer/Daniel_Data/Analysis/Analysis_output/20200511/SpikeTableTotalWithFiringRate.rds")
+#SpikeTableTotal <- readRDS("/alzheimer/Daniel_Data/Analysis/Analysis_output/20200511/SpikeTableTotalWithFiringRate.rds")
+SpikeTableTotal <- readRDS("Data/SpikeTableTotalV2.rds")
 LowOccurenceDropOut <- SpikeTableTotal[ClusterNr>1, .N,by=.(UniqueID)][N<3e3, ][,UniqueID,]  
 SpikeTableTotal[UniqueID %in% LowOccurenceDropOut,ClusterNr:=1,] 
 
