@@ -93,11 +93,11 @@ To investigate whether GABAergic PV^+^ MS cells project to the PaS and which tar
 (ref:LED10CCShortCaption) Light induced synaptic inputs by activation of PV^+^ fibres
 (ref:LED10CCCaption) **Light induced synaptic inputs by activation of PV^+^ fibres.** Panel A shows a FS and an IN cell receiving GABAergic septal inputs. Panel B inhibitory postsynaptic potentials at different holding potentials during 10Hz stimulation elicited with 10ms light pulses. Blue lines indicate the timing and length of stimulation. Panel C shows a FS cell in voltage-clamp configuration held at -45 mV during 4 Hz, 10 Hz, 20 Hz, and 40 Hz stimulation with 10 ms light pulses.
 
-```{r LED10CC, fig.cap='(ref:LED10CCCaption)', fig.scap='(ref:LED10CCShortCaption)',echo=F, message=FALSE, warning=FALSE, fig.width=5.9, fig.align='center', fig.asp=0.7}
+```{r LED10CC, fig.cap='(ref:LED10CCCaption)', fig.scap='(ref:LED10CCShortCaption)',echo=F, message=FALSE, warning=FALSE, fig.width=7, fig.align='center', fig.asp=0.7}
 
 ### add resting potential information
 LED10CCPlot <- readRDS(file = "Data/LightStimulation10Hz.rds")
-LED10CCPlot & theme(plot.tag = element_text(size=16), strip.text.y = element_text(size=8.5), strip.text.x = element_text(size=9))
+LED10CCPlot & theme(plot.tag = element_text(size=16*7/5.9), strip.text.y = element_text(size=8.5*7/5.9), strip.text.x = element_text(size=9*7/5.9))
 ```
 
 \noindent An important feature of synaptic connections is the strength of the connection which can be quantified as amplitude. A large negative deflection will likely be able to inhibit a cell when depolarised. To estimate the reversal potential and the amplitudes of synaptic inputs, I used a Bayesian hierarchical linear model. These models have the advantage that accounting for nested structures in the data (cells, animal, experimental setup) is simple and will result in more unbiased population parameter estimates. I reparameterised the regular linear regression ($y = m \cdot x + n$) to directly estimate the reversal potential ($y=m \cdot x - slope \cdot V_{rev}$) and added an informative prior (some restricting soft bounds) with a mean of $-68\ mV$ taken from @gonzalez-sulser_gabaergic_2014 and $3$ standard deviations.
@@ -179,23 +179,22 @@ The ROPE indicates which LOR values would likely represent equivalence between t
 (ref:PhaseLockInVitroPlotShortCaption) Spike phase reset *in-vitro*
 (ref:PhaseLockInVitroPlotCaption) **Spike phase reset in-vitro.** A depolarised spiking putative interneuron (A) is inhibited using 10 ms long light pulses at $10\ Hz$. The raster plot (B) shows spike times throughout 20 trials over a time of $0.5\ s$. C ,a closeup of (A), shows complete inhibition of spikes during stimulation times. D shows $\rho$ a value for phase locking of spikes. The maximum value of $\rho$ is $1$ assuming perfect phase lock and the chance level $\rho_{random}\ 0.22$. Blue lines indicate the timing and length of stimulation in A-D.
 
-```{r PhaseLockInVitroPlot, fig.cap='(ref:PhaseLockInVitroPlotCaption)', fig.scap='(ref:PhaseLockInVitroPlotShortCaption)', echo=F, message=FALSE, warning=FALSE, fig.width=8, fig.align='center', fig.asp=0.6}
+```{r PhaseLockInVitroPlot, fig.cap='(ref:PhaseLockInVitroPlotCaption)', fig.scap='(ref:PhaseLockInVitroPlotShortCaption)', echo=F, message=FALSE, warning=FALSE, fig.width=5.9, fig.align='center', fig.asp=0.6}
 
 SpikeWide <- readRDS(file = "Data/SpikeWide.rds")
 SpikeZoom <- readRDS(file = "Data/SpikeZoom.rds")
-SpikeRasterChR2 <- readRDS(file = "Data/SpikeRasterChR2.rds") + theme(axis.text=element_text(size=9*8/5.9), axis.title=element_text(size=11*8/5.9))
-PhaseLock <- readRDS(file = "Data/PhaseLock.rds") + theme(axis.text=element_text(size=9*8/5.9), axis.title=element_text(size=11*8/5.9))
+SpikeRasterChR2 <- readRDS(file = "Data/SpikeRasterChR2.rds") + theme(axis.text=element_text(size=10), axis.title=element_text(size=11), strip.text = element_text(size = 10))#theme(axis.text=element_text(size=9*8/5.9), axis.title=element_text(size=11*8/5.9))
+PhaseLock <- readRDS(file = "Data/PhaseLock.rds") + theme(axis.text=element_text(size=10), axis.title=element_text(size=11), strip.text = element_text(size = 10))#theme(axis.text=element_text(size=9*8/5.9), axis.title=element_text(size=11*8/5.9))
 desginMatrix <- "
 AABBB
 CCDDD
 "
-
 #PhaseLockInVitro <- readRDS(file = "Data/PhaseLockPanel.rds")
 ChatInputCheck <- readRDS("Data/ChatInputCheck.rds")
 ChATDetails <- readRDS("Data/ChATDetails.rds")
 DeflectionTypeCount <- ChATDetails[Type!="indirect",.N,by=.(Type, CellTypeLayer)]
 
-SpikeWide + SpikeRasterChR2 + SpikeZoom + PhaseLock + plot_annotation(tag_levels = "A") + plot_layout(design = desginMatrix) & theme(plot.tag = element_text(size=16*8/5.9))
+SpikeWide + SpikeRasterChR2 + SpikeZoom + PhaseLock + plot_annotation(tag_levels = "A") + plot_layout(design = desginMatrix) & theme(plot.tag = element_text(size=16))
 
 ```
 
@@ -254,7 +253,7 @@ DF
 
 DepolarisationChAT + Depol70 + DeltaDepol + HyperPolarisationChAT + Hyp50 + DeltaHyp + plot_annotation(tag_levels = "A") + plot_layout(design = PlotChATDesignMat, widths = c(5,1.7)) &
   theme(plot.tag = element_text(size=16*8.5/5.9), axis.text=element_text(size=8*8/8), axis.title=element_text(size=13.5*8/8), strip.text = element_text(size=16*8/8))
-# 
+# theme(axis.text=element_text(size=10), axis.title=element_text(size=11), strip.text = element_text(size = 10))
 # DepolarisationChAT + Depol70 + DeltaDepol + HyperPolarisationChAT + Hyp50 + DeltaHyp + plot_annotation(tag_levels = "A") + plot_layout(design = PlotChATDesignMat, widths = c(5,1.5)) &
 #   theme(plot.tag = element_text(size=20*8/8), axis.text=element_text(size=8.5*8/8), axis.title=element_text(size=13.5*8/8), strip.text = element_text(size=16*8/8))
 
@@ -297,7 +296,7 @@ Because of the strong GABAergic projections, targeting a large proportion of int
 
 ```{r OverViewInVivo, fig.cap='(ref:OverViewInVivoCaption)', fig.scap='(ref:OverViewInVivoShortCaption)', echo=F, fig.asp=7/6, fig.width=5.9, warning=FALSE, fig.pos='H'}
 WTSingleExampleOverviewPlot <- readRDS(file = "Data/WTSingleExampleOverviewPlot.rds")
-WTSingleExampleOverviewPlot + theme(plot.tag = element_text(size=16), axis.text=element_text(size=9), axis.title=element_text(size=12))
+WTSingleExampleOverviewPlot + theme(plot.tag = element_text(size=16), axis.text=element_text(size=9), axis.title=element_text(size=11))
 ```
 
 \noindent To reduce a potential deactivation of the ChR2 due to overstimulation, I switched between MS stimulation and fibre stimulation in the PaS. Since the MEC and the PaS are in close vicinity, recordings from both areas could be achieved in some sessions ($4/16$), which offered a chance to directly compare the power and phase locking behaviour in the two structures. This is especially interesting due to the fact that they both get innervated by the MS, receive inputs via the hippocampal loop and project to each other. After establishing a baseline, I started to stimulate the MS and PaS with the LED respectively, using a pulse train stimulation at $2\ Hz$, $4\ Hz$, $8\ Hz$, $16\ Hz$, and $32\ Hz$ to entrain the network. To identify ChR2-positive neurons in the MS, I applied $200$-$300$ $1\ Hz$ $2\ ms$ pulses. Since background activity during the recordings is dominated by lower frequencies and frequencies in the $\theta$-band (Figure \@ref(fig:OverViewInVivo)C and D), I repeated stimulation protocols in a pseudo random manner up to $20$ times and applied a frequency normalisation ($power\cdot f$), which removes dominating low frequency activity (Figure \@ref(fig:OverViewInVivo)E).
@@ -311,9 +310,9 @@ The MS stimulation drastically increased the power density in the PaS and in the
 (ref:WaveletPowerNestedShortCaption) Power density in the PaS and MEC
 (ref:WaveletPowerNestedCaption) **Power density in the PaS and MEC.** Power density of $15\ s$ averaged over multiple trials. The y-axis shows the frequency (Hz) and the x-axis the time. Stimulation occurs from $5\ s$ to $10\ s$ (blue line). Major columns refer to the recording location (PaS or MEC) and minor columns to the stimulation location (MS or fibre stimulation). Each row shows a different stimulation frequency ($2\ Hz$, $4\ Hz$, $8\ Hz$, $16\ Hz$, $32\ Hz$). Bright yellow indicates high power density and black low power density. An increase in power can be observed in stimulation blocks at the stimulation frequency when stimulating in the MS and is absent during fibre stimulation.
 
-```{r WaveletPowerNested, fig.cap='(ref:WaveletPowerNestedCaption)', fig.scap='(ref:WaveletPowerNestedShortCaption)', echo=F, fig.align='center', fig.asp=5/8, fig.width=7, warning=FALSE, fig.pos='htb'}
+```{r WaveletPowerNested, fig.cap='(ref:WaveletPowerNestedCaption)', fig.scap='(ref:WaveletPowerNestedShortCaption)', echo=F, fig.align='center', fig.asp=5/8, fig.width=5.9, warning=FALSE, fig.pos='htb'}
 PSDWaveletOverview <- readRDS(file = "Data/PSDWaveletOverview.rds")
-PSDWaveletOverview + theme(axis.text=element_text(size=9), axis.title=element_text(size=12), strip.text = element_text(size = 8.7))
+PSDWaveletOverview + theme(axis.text=element_text(size=8), axis.title=element_text(size=11), strip.text = element_text(size = 8.3))
 ```
 
 Since power is limited to only positive values and has a longer tail, a $Gamma$ distribution \@ref(eq:GammaDistribution) can capture the properties well. Furthermore, the model was set up to estimate correlations in the parameters and account for nested structures. Considering the non-linearity which can be observed in all conditions (see Figure \@ref(fig:PowerDensityNested)), I had to consider including this behaviour in the estimation. The power independently of ChR2 stimulation does change with the frequency. Therefore, I decided to address this trend by using an asymptotic regression which defines power at $0\ Hz$ to be $0$ (see equation \@ref(eq:AsymPower)). It simultaneously assumes that there is a ceiling and power is finite. By using the formula to estimate $\mu_{PowerDensity}$ with additional predictors such as the stimulation, we estimate the effect on $beta_{slope}$ or $beta_{max}$ indicating the ceiling for the power density. The asymptotic regression takes care of the limits which are defined by the network and how much power can be generated, and the $Gamma$ error distribution with a log-link assures positive values close to $0$.
@@ -324,7 +323,7 @@ Since power is limited to only positive values and has a longer tail, a $Gamma$ 
 ```{r PowerDensityNested, fig.cap='(ref:PSDnestedOverviewCaption)', fig.scap='(ref:PSDnestedOverviewShortCaption)', echo=F, fig.align='center', fig.asp=6/8, fig.width=5.9, warning=FALSE, fig.pos='htb'}
 PowerDensitySpectralPlotNestedOverview <- readRDS(file = "Data/PowerDensitySpectralPlotNestedOverview.rds")
 PSDN <- readRDS("Data/PSDN.rds")
-PowerDensitySpectralPlotNestedOverview + theme(axis.text=element_text(size=7.5), axis.title=element_text(size=12), strip.text = element_text(size = 9))
+PowerDensitySpectralPlotNestedOverview + theme(axis.text=element_text(size=7.5), axis.title=element_text(size=11), strip.text = element_text(size = 9))
 ```
 
 (ref:PSDSingleStimLineFacetPlotShortCaption) Power density is increased during MS stimulation
@@ -342,7 +341,7 @@ HDIBetaSlopeDiff <- readRDS(file = "Data/HDIBetaSlopeDiff.rds")
 PSDRatio <- readRDS(file = "Data/PSDRatio.rds")
 PSDRatio[,GroupComparison:=RecLoc,]
 
-PSDStimLinelog10PlotFacet + theme(axis.text=element_text(size=7.5), axis.title=element_text(size=12), strip.text.x = element_text(size = 10))
+PSDStimLinelog10PlotFacet + theme(axis.text=element_text(size=7.5), axis.title=element_text(size=11), strip.text.x = element_text(size = 10))
 
 ```
 
@@ -368,7 +367,7 @@ Given that I observed an increase in power in the higher frequencies during MS s
 (ref:WaveletRhoNestedShortCaption) Phase lock in the PaS and MEC
 (ref:WaveletRhoNestedCaption) **Phase lock in the PaS and MEC.** The phase lock was quantified as $\rho$ where a value of $1$ (yellow) indicates perfect phase alignment over repeated trials and $0$ (dark blue) none. The random $\rho$ given N trials is expected to be $1/\sqrt{N_{trial}}$ (MS stimulation: $0.2$; fibre stimulation: $0.183$). The y-axis shows the frequency (Hz) and the x-axis the time. Stimulation occurs from $5\ s$ to $10\ s$ (blue line). Major columns refer to the recording location (PaS or MEC) and minor columns to the stimulation location (MS or fibre stimulation). Each row shows a different stimulation frequency ($2\ Hz$, $4\ Hz$, $8\ Hz$, $16\ Hz$, $32\ Hz$).
 
-```{r WaveletRhoNested, fig.cap='(ref:WaveletRhoNestedCaption)', fig.scap='(ref:WaveletRhoNestedShortCaption)',echo=F, fig.align='center', fig.asp=5/8, fig.width=7, warning=FALSE, fig.pos='htb'}
+```{r WaveletRhoNested, fig.cap='(ref:WaveletRhoNestedCaption)', fig.scap='(ref:WaveletRhoNestedShortCaption)',echo=F, fig.align='center', fig.asp=5/8, fig.width=5.9, warning=FALSE, fig.pos='htb'}
 RhoWaveletOverview <- readRDS(file = "Data/RhoWaveletOverview.rds")
 RhoLogTable <- readRDS(file = "Data/RhoLogTable.rds")
 HDIBetaMaxRhoLogOddsSummary <- readRDS(file = "Data/HDIBetaMaxRhoLogOddsSummary.rds")
@@ -376,7 +375,7 @@ HDIBetaMaxRhoLogOddsSummary <- readRDS(file = "Data/HDIBetaMaxRhoLogOddsSummary.
 RhoLogTable[,`:=`(GroupComparison=RecLoc, OutOfInterval=0),]
 RhoLogTable[(`2.5%`> pi/sqrt(3)*0.1&`50%`> pi/sqrt(3)*0.1&`97.5%`> pi/sqrt(3)*0.1)|(`2.5%` < -pi/sqrt(3)*0.1&`50%`< -pi/sqrt(3)*0.1&`97.5%`< -pi/sqrt(3)*0.1),OutOfInterval:=1,]
 
-RhoWaveletOverview + theme(axis.text=element_text(size=9), axis.title=element_text(size=12*7/5), strip.text = element_text(size = 8.7))
+RhoWaveletOverview + theme(axis.text=element_text(size=8), axis.title=element_text(size=11), strip.text = element_text(size = 8.3))
 ```
 
 \noindent I was able to detect that phases were aligned during MS stimulation at all stimulation frequencies and phase lock was even pronounced when using the $2\ Hz$ stimulation. Due to the sensitivity of the $\rho$ value, harmonics picked up by the wavelet transform are now more pronounced. Peaks of harmonics will appear as the multiple of the original signal and can be considered artefacts due to the fact that they most likely have no physiological relevance. The peak of the phase lock was centred around the stimulation frequency and seemed to change given the stimulation frequency. Similarly, a stimulation of the fibres in the PaS or the MEC did not appear to be sufficient to achieve phase lock (Figure \@ref(fig:SpectrumRhoNested)). To quantify the strength of the phase lock in relation to pre-stimulus and-post stimulus times, I divided the simulation blocks into three parts as shown with the power. I then calculated the average $\rho$ for any given frequency and stimulation block. As previously discussed, the $\rho$ of a random distribution can be formalised as $\rho_{random}=\frac{1}{\sqrt{trial_{N}}}$ and, therefore, values which are true phase lock should be significantly larger than our $\rho_{random}$, given our number of trials. We can think of $\rho$, similarly, as our connectivity, which was described by the $beta$ distribution as a continuous value with same limits and similar interpretation. I calculated the log odds (equation \@ref(eq:logOddsRatio)) ratio of $\rho$ and $\rho_{random}$ to eliminate false positives, which could occur due to a lack of trials. Hence, this approach allowed me to account for uncertainty in the estimate and transformed our values from a range of 0 and 1 to normally distributed data with possible values of $-\infty$ to $\infty$. Now a value of $0$ means that there is no change in locking compared to $\rho_{random}$, negative values will describe the log reduction and positive values a log increase of phase lock.
@@ -388,7 +387,7 @@ RhoWaveletOverview + theme(axis.text=element_text(size=9), axis.title=element_te
 
 ```{r SpectrumRhoNested, fig.cap='(ref:SpectrumRhoNestedCaption)', fig.scap='(ref:SpectrumRhoNestedShortCaption)', echo=F, fig.align='center', fig.asp=5/7,fig.width=5.9, warning=FALSE}
 RhoLogOddsFreqSpectrumPlotFacetOverview <- readRDS(file = "Data/RhoLogOddsFreqSpectrumPlotFacetOverview.rds")
-RhoLogOddsFreqSpectrumPlotFacetOverview + theme(axis.text=element_text(size=7.5), axis.title=element_text(size=12), strip.text = element_text(size = 9))
+RhoLogOddsFreqSpectrumPlotFacetOverview + theme(axis.text=element_text(size=7.5), axis.title=element_text(size=11), strip.text = element_text(size = 9))
 ```
 
 \noindent Equally to analysis of *in-vitro* connectivity data the region of practical equivalence (ROPE) for log odds ratios is $\pi/\sqrt{3}\cdot0.1$ ($\approx 0.183$). Strong increases of phase lock can be seen at almost all stimulation frequencies, including their harmonics (Figure \@ref(fig:SpectrumRhoNested)). The log-transform confirmed our suspicion that the fibre stimulation did not induce changes of locking.
@@ -425,10 +424,10 @@ To see if the identified cells corresponded to a homogeneous group of cells with
 (ref:UnitDiversityShortCaption) Diversity in PV^+^ MS single units
 (ref:UnitDiversityCaption) **Diversity in PV^+^ MS single units.** (A) Spike autocorrelogram for PV^+^ single units in the MS show refractory period as gap and in two cells dominant bursting behaviour indicated by the large peaks at the centre. The rate was normalised to the maximum rate. Inter-spike timings are given in seconds. (B) A larger time window of the same cells indicates different oscillatory behaviours. (C) The corresponding PaS $\theta$-phase preference for the units range from the trough of the $\theta$-oscillation ($90^{\circ}$) to the peak ($270^{\circ}$). (D) An overview of $\theta$ phase lock to the MEC and PaS of PV^+^ cells (red) and PV^-^ cells (not activated by light, black). Circles indicate the strength of the phase vector ($0.5$,$1$).
 
-```{r UnitDiversity, echo=F, fig.align='center', fig.cap='(ref:UnitDiversityCaption)', fig.height=7, fig.scap='(ref:UnitDiversityShortCaption)', fig.width=8, message=FALSE, warning=FALSE, fig.pos='htb'}
-PVCCFPlotZoom <- readRDS(file = "Data/PVCCFPlotZoom.rds") + scale_x_continuous(limits = c(-0.02,0.02), breaks = c(-0.02, -0.01, 0, 0.01, 0.02), name = "Time (s)", labels = c("-0.02", "-0.01", "0", "0.01", "0.02"))+ theme(panel.spacing.x = unit(x = 11, units = "pt"), axis.title=element_text(size=11), axis.text=element_text(size=7))
-PVCCFPlotOut <- readRDS(file = "Data/PVCCFPlotOut.rds") + scale_x_continuous(limits = c(-0.5,0.5), breaks = c(-0.5, -0.25, 0, 0.25, 0.5), name = "Time (s)", labels = c("-0.5", "-0.25", "0", "0.25", "0.5")) + theme(panel.spacing.x = unit(x = 11, units = "pt"), axis.title=element_text(size=11), axis.text=element_text(size=7))
-PVThetaPhase <- readRDS(file = "Data/PVThetaPhase.rds") + theme(panel.spacing.x = unit(x = 11, units = "pt"), axis.title=element_text(size=11), axis.text=element_text(size=7))
+```{r UnitDiversity, echo=F, fig.align='center', fig.cap='(ref:UnitDiversityCaption)', fig.height=8.5, fig.scap='(ref:UnitDiversityShortCaption)', fig.width=8, message=FALSE, warning=FALSE, fig.pos='htb'}
+PVCCFPlotZoom <- readRDS(file = "Data/PVCCFPlotZoom.rds") + scale_x_continuous(limits = c(-0.02,0.02), breaks = c(-0.02, -0.01, 0, 0.01, 0.02), name = "Time (s)", labels = c("-0.02", "-0.01", "0", "0.01", "0.02"))+ theme(panel.spacing.x = unit(x = 11, units = "pt"), axis.title=element_text(size=11*8/5.9), axis.text=element_text(size=7))
+PVCCFPlotOut <- readRDS(file = "Data/PVCCFPlotOut.rds") + scale_x_continuous(limits = c(-0.5,0.5), breaks = c(-0.5, -0.25, 0, 0.25, 0.5), name = "Time (s)", labels = c("-0.5", "-0.25", "0", "0.25", "0.5")) + theme(panel.spacing.x = unit(x = 11, units = "pt"), axis.title=element_text(size=11*8/5.9), axis.text=element_text(size=7))
+PVThetaPhase <- readRDS(file = "Data/PVThetaPhase.rds") + theme(panel.spacing.x = unit(x = 11, units = "pt"), axis.title=element_text(size=11*8/5.9), axis.text=element_text(size=7))
 PhaseCirclePlot <- readRDS(file = "Data/PhaseCirclePlot.rds")
 
 PhaseDesignMatrix <- "

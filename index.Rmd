@@ -29,7 +29,7 @@ subtitle: |
   | to obtain the academic degree
   | Doctor rerum naturalium (Dr. rer. nat.)
   |
-  | submitted to the Department of Biology, Chemistry and Pharmacy
+  | submitted to the Department of Biology, Chemistry, Pharmacy
   | of Freie Universität Berlin
   | by
 # biblio-style: apalike
@@ -125,8 +125,8 @@ Um zu zeigen, dass man mit GABAergen Projektionen $\theta$ generieren kann, nahm
 knitr::write_bib(c(
   .packages(), 'bookdown', 'knitr', 'rmarkdown', 'data.table'
 ), 'packages.bib')
-knitr::opts_chunk$set(dev = 'pdf', echo = FALSE, warning = FALSE, message = FALSE, fig.pos = "htbp")
-#knitr::opts_chunk$set(dev = 'png', echo = FALSE, warning = FALSE, message = FALSE, dpi = 600, fig.pos = "!htb")
+#knitr::opts_chunk$set(dev = 'pdf', echo = FALSE, warning = FALSE, message = FALSE, fig.pos = "htbp")
+knitr::opts_chunk$set(dev = 'png', echo = FALSE, warning = FALSE, message = FALSE, dpi = 600, fig.pos = "htbp")
 library('magrittr')
 library('png')
 library('ggh4x')
